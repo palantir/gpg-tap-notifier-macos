@@ -1,0 +1,11 @@
+xcuserdata/
+
+# This directory contains files with absolute file system paths that won't be
+# portable across git clones. It looks like this repo can safely gitignore this
+# since it doesn't contain more than one Xcode workspace project.
+# https://stackoverflow.com/a/10960309
+project.xcworkspace
+
+# These files are auto-generated from hiutil.
+/Sources/GpgTapNotifier/GpgTapNotifier.help/Contents/Resources/en.lproj/GpgTapNotifier.cshelpindex
+/Sources/GpgTapNotifier/GpgTapNotifier.help/Contents/Resources/en.lproj/GpgTapNotifier.helpindex

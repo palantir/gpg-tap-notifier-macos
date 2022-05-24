@@ -1,0 +1,770 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8310601E27CDEC3A00824D28 /* GPG Tap Notifier Agent.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 837F1E0A27CADB3300C249DA /* GPG Tap Notifier Agent.app */; };
+		831CC89F27D07884002D8A6D /* GpgAgentConfSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831CC89E27D07884002D8A6D /* GpgAgentConfSectionView.swift */; };
+		831CC8A127D07D0F002D8A6D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831CC8A027D07D0F002D8A6D /* Constants.swift */; };
+		8334A62C282024E900820038 /* GpgTapNotifierConfigLib in Frameworks */ = {isa = PBXBuildFile; productRef = 8334A62B282024E900820038 /* GpgTapNotifierConfigLib */; };
+		8334A634282031D000820038 /* MainCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8334A633282031D000820038 /* MainCommand.swift */; };
+		8334A639282031EF00820038 /* GpgTapNotifierConfigLib in Frameworks */ = {isa = PBXBuildFile; productRef = 8334A638282031EF00820038 /* GpgTapNotifierConfigLib */; };
+		8345C08D27EA37A3000413FF /* ReadCompletionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8345C08C27EA37A3000413FF /* ReadCompletionUtils.swift */; };
+		835F7A9327DE87D30046D482 /* AsyncUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835F7A9227DE87D30046D482 /* AsyncUtils.swift */; };
+		835F7A9527DEC8C60046D482 /* GpgAgentConfViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835F7A9427DEC8C60046D482 /* GpgAgentConfViewModel.swift */; };
+		837F1DF827CADB1F00C249DA /* GpgTapNotifierApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837F1DF727CADB1F00C249DA /* GpgTapNotifierApp.swift */; };
+		837F1DFA27CADB1F00C249DA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837F1DF927CADB1F00C249DA /* ContentView.swift */; };
+		837F1DFC27CADB2000C249DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 837F1DFB27CADB2000C249DA /* Assets.xcassets */; };
+		837F1DFF27CADB2000C249DA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 837F1DFE27CADB2000C249DA /* Preview Assets.xcassets */; };
+		837F1E0D27CADB3300C249DA /* GpgTapNotifierAgentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837F1E0C27CADB3300C249DA /* GpgTapNotifierAgentApp.swift */; };
+		837F1E1127CADB3500C249DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 837F1E1027CADB3500C249DA /* Assets.xcassets */; };
+		837F1E1427CADB3500C249DA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 837F1E1327CADB3500C249DA /* Preview Assets.xcassets */; };
+		837F1E1B27CADF1F00C249DA /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837F1E1A27CADF1F00C249DA /* main.swift */; };
+		837FD81A27E6AB5000CDD61B /* FilePathItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837FD81927E6AB5000CDD61B /* FilePathItemView.swift */; };
+		837FD81C27E6BA3500CDD61B /* NotificationMessageEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837FD81B27E6BA3500CDD61B /* NotificationMessageEditView.swift */; };
+		83A054B928088AD90033CD5E /* GpgTapNotifier.help in Resources */ = {isa = PBXBuildFile; fileRef = 83A054B828088AD90033CD5E /* GpgTapNotifier.help */; };
+		83C17BC12820336700EC59BB /* GPG Tap Notifier Installer in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8334A631282031D000820038 /* GPG Tap Notifier Installer */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		83C17BC42820349F00EC59BB /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 83C17BC32820349F00EC59BB /* ArgumentParser */; };
+		83C2E71B27E4464900FB7743 /* FilePathsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C2E71A27E4464900FB7743 /* FilePathsView.swift */; };
+		83EC6A9B2820828400A0759F /* GpgTapNotifierUserDefaults in Frameworks */ = {isa = PBXBuildFile; productRef = 83EC6A9A2820828400A0759F /* GpgTapNotifierUserDefaults */; };
+		83EC6A9D2820828F00A0759F /* GpgTapNotifierUserDefaults in Frameworks */ = {isa = PBXBuildFile; productRef = 83EC6A9C2820828F00A0759F /* GpgTapNotifierUserDefaults */; };
+		83EC6A9F2820829400A0759F /* GpgTapNotifierUserDefaults in Frameworks */ = {isa = PBXBuildFile; productRef = 83EC6A9E2820829400A0759F /* GpgTapNotifierUserDefaults */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8310601D27CDEC1900824D28 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library;
+			dstSubfolderSpec = 1;
+			files = (
+				83C17BC12820336700EC59BB /* GPG Tap Notifier Installer in CopyFiles */,
+				8310601E27CDEC3A00824D28 /* GPG Tap Notifier Agent.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8334A62F282031D000820038 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		830285872804D9CD008B84CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		831CC89E27D07884002D8A6D /* GpgAgentConfSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpgAgentConfSectionView.swift; sourceTree = "<group>"; };
+		831CC8A027D07D0F002D8A6D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		8334A6292820247E00820038 /* GpgTapNotifierConfigLib */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GpgTapNotifierConfigLib; sourceTree = "<group>"; };
+		8334A631282031D000820038 /* GPG Tap Notifier Installer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "GPG Tap Notifier Installer"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8334A633282031D000820038 /* MainCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCommand.swift; sourceTree = "<group>"; };
+		8345C08C27EA37A3000413FF /* ReadCompletionUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadCompletionUtils.swift; sourceTree = "<group>"; };
+		835F7A9227DE87D30046D482 /* AsyncUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncUtils.swift; sourceTree = "<group>"; };
+		835F7A9427DEC8C60046D482 /* GpgAgentConfViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpgAgentConfViewModel.swift; sourceTree = "<group>"; };
+		837F1DF427CADB1F00C249DA /* GPG Tap Notifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GPG Tap Notifier.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		837F1DF727CADB1F00C249DA /* GpgTapNotifierApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpgTapNotifierApp.swift; sourceTree = "<group>"; };
+		837F1DF927CADB1F00C249DA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		837F1DFB27CADB2000C249DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		837F1DFE27CADB2000C249DA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		837F1E0027CADB2000C249DA /* GpgTapNotifier.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GpgTapNotifier.entitlements; sourceTree = "<group>"; };
+		837F1E0A27CADB3300C249DA /* GPG Tap Notifier Agent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GPG Tap Notifier Agent.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		837F1E0C27CADB3300C249DA /* GpgTapNotifierAgentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpgTapNotifierAgentApp.swift; sourceTree = "<group>"; };
+		837F1E1027CADB3500C249DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		837F1E1327CADB3500C249DA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		837F1E1527CADB3500C249DA /* GpgTapNotifierAgent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GpgTapNotifierAgent.entitlements; sourceTree = "<group>"; };
+		837F1E1927CADD7500C249DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		837F1E1A27CADF1F00C249DA /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		837FD81927E6AB5000CDD61B /* FilePathItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePathItemView.swift; sourceTree = "<group>"; };
+		837FD81B27E6BA3500CDD61B /* NotificationMessageEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationMessageEditView.swift; sourceTree = "<group>"; };
+		83A054B828088AD90033CD5E /* GpgTapNotifier.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = GpgTapNotifier.help; sourceTree = "<group>"; };
+		83C17BC6282048B500EC59BB /* GpgTapNotifierInstaller.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = GpgTapNotifierInstaller.entitlements; sourceTree = "<group>"; };
+		83C2E71A27E4464900FB7743 /* FilePathsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePathsView.swift; sourceTree = "<group>"; };
+		83EF66F0282EB30D00880EA6 /* GpgTapNotifierUserDefaults */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GpgTapNotifierUserDefaults; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8334A62E282031D000820038 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83C17BC42820349F00EC59BB /* ArgumentParser in Frameworks */,
+				8334A639282031EF00820038 /* GpgTapNotifierConfigLib in Frameworks */,
+				83EC6A9B2820828400A0759F /* GpgTapNotifierUserDefaults in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		837F1DF127CADB1F00C249DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83EC6A9F2820829400A0759F /* GpgTapNotifierUserDefaults in Frameworks */,
+				8334A62C282024E900820038 /* GpgTapNotifierConfigLib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		837F1E0727CADB3300C249DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83EC6A9D2820828F00A0759F /* GpgTapNotifierUserDefaults in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		831CC89D27D07851002D8A6D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				831CC89E27D07884002D8A6D /* GpgAgentConfSectionView.swift */,
+				83C2E71A27E4464900FB7743 /* FilePathsView.swift */,
+				837FD81927E6AB5000CDD61B /* FilePathItemView.swift */,
+				837FD81B27E6BA3500CDD61B /* NotificationMessageEditView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8334A62A282024E900820038 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8334A632282031D000820038 /* GpgTapNotifierInstaller */ = {
+			isa = PBXGroup;
+			children = (
+				83C17BC6282048B500EC59BB /* GpgTapNotifierInstaller.entitlements */,
+				8334A633282031D000820038 /* MainCommand.swift */,
+			);
+			path = GpgTapNotifierInstaller;
+			sourceTree = "<group>";
+		};
+		834EDEB327DEFC3400A17BEB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				835F7A9427DEC8C60046D482 /* GpgAgentConfViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		837F1DEB27CADB1F00C249DA = {
+			isa = PBXGroup;
+			children = (
+				8334A6292820247E00820038 /* GpgTapNotifierConfigLib */,
+				83EF66F0282EB30D00880EA6 /* GpgTapNotifierUserDefaults */,
+				837F1DF627CADB1F00C249DA /* GpgTapNotifier */,
+				837F1E0B27CADB3300C249DA /* GpgTapNotifierAgent */,
+				8334A632282031D000820038 /* GpgTapNotifierInstaller */,
+				837F1DF527CADB1F00C249DA /* Products */,
+				8334A62A282024E900820038 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		837F1DF527CADB1F00C249DA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				837F1DF427CADB1F00C249DA /* GPG Tap Notifier.app */,
+				837F1E0A27CADB3300C249DA /* GPG Tap Notifier Agent.app */,
+				8334A631282031D000820038 /* GPG Tap Notifier Installer */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		837F1DF627CADB1F00C249DA /* GpgTapNotifier */ = {
+			isa = PBXGroup;
+			children = (
+				831CC89D27D07851002D8A6D /* Views */,
+				834EDEB327DEFC3400A17BEB /* ViewModel */,
+				837F1DF727CADB1F00C249DA /* GpgTapNotifierApp.swift */,
+				837F1DF927CADB1F00C249DA /* ContentView.swift */,
+				837F1DFB27CADB2000C249DA /* Assets.xcassets */,
+				837F1E0027CADB2000C249DA /* GpgTapNotifier.entitlements */,
+				837F1DFD27CADB2000C249DA /* Preview Content */,
+				83A054B828088AD90033CD5E /* GpgTapNotifier.help */,
+				830285872804D9CD008B84CF /* Info.plist */,
+				831CC8A027D07D0F002D8A6D /* Constants.swift */,
+				835F7A9227DE87D30046D482 /* AsyncUtils.swift */,
+			);
+			path = GpgTapNotifier;
+			sourceTree = "<group>";
+		};
+		837F1DFD27CADB2000C249DA /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				837F1DFE27CADB2000C249DA /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		837F1E0B27CADB3300C249DA /* GpgTapNotifierAgent */ = {
+			isa = PBXGroup;
+			children = (
+				837F1E1927CADD7500C249DA /* Info.plist */,
+				837F1E0C27CADB3300C249DA /* GpgTapNotifierAgentApp.swift */,
+				837F1E1A27CADF1F00C249DA /* main.swift */,
+				8345C08C27EA37A3000413FF /* ReadCompletionUtils.swift */,
+				837F1E1027CADB3500C249DA /* Assets.xcassets */,
+				837F1E1527CADB3500C249DA /* GpgTapNotifierAgent.entitlements */,
+				837F1E1227CADB3500C249DA /* Preview Content */,
+			);
+			path = GpgTapNotifierAgent;
+			sourceTree = "<group>";
+		};
+		837F1E1227CADB3500C249DA /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				837F1E1327CADB3500C249DA /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8334A630282031D000820038 /* GPG Tap Notifier Installer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8334A637282031D000820038 /* Build configuration list for PBXNativeTarget "GPG Tap Notifier Installer" */;
+			buildPhases = (
+				8334A62D282031D000820038 /* Sources */,
+				8334A62E282031D000820038 /* Frameworks */,
+				8334A62F282031D000820038 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "GPG Tap Notifier Installer";
+			packageProductDependencies = (
+				8334A638282031EF00820038 /* GpgTapNotifierConfigLib */,
+				83C17BC32820349F00EC59BB /* ArgumentParser */,
+				83EC6A9A2820828400A0759F /* GpgTapNotifierUserDefaults */,
+			);
+			productName = GpgTapNotifierInstaller;
+			productReference = 8334A631282031D000820038 /* GPG Tap Notifier Installer */;
+			productType = "com.apple.product-type.tool";
+		};
+		837F1DF327CADB1F00C249DA /* GPG Tap Notifier */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 837F1E0327CADB2000C249DA /* Build configuration list for PBXNativeTarget "GPG Tap Notifier" */;
+			buildPhases = (
+				837F1DF027CADB1F00C249DA /* Sources */,
+				837F1DF127CADB1F00C249DA /* Frameworks */,
+				837F1DF227CADB1F00C249DA /* Resources */,
+				8310601D27CDEC1900824D28 /* CopyFiles */,
+				83A054BD280894CD0033CD5E /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "GPG Tap Notifier";
+			packageProductDependencies = (
+				8334A62B282024E900820038 /* GpgTapNotifierConfigLib */,
+				83EC6A9E2820829400A0759F /* GpgTapNotifierUserDefaults */,
+			);
+			productName = "GPG Tap Notifier";
+			productReference = 837F1DF427CADB1F00C249DA /* GPG Tap Notifier.app */;
+			productType = "com.apple.product-type.application";
+		};
+		837F1E0927CADB3300C249DA /* GPG Tap Notifier Agent */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 837F1E1627CADB3500C249DA /* Build configuration list for PBXNativeTarget "GPG Tap Notifier Agent" */;
+			buildPhases = (
+				837F1E0627CADB3300C249DA /* Sources */,
+				837F1E0727CADB3300C249DA /* Frameworks */,
+				837F1E0827CADB3300C249DA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "GPG Tap Notifier Agent";
+			packageProductDependencies = (
+				83EC6A9C2820828F00A0759F /* GpgTapNotifierUserDefaults */,
+			);
+			productName = "GPG Tap Notifier Agent";
+			productReference = 837F1E0A27CADB3300C249DA /* GPG Tap Notifier Agent.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		837F1DEC27CADB1F00C249DA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1330;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					8334A630282031D000820038 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
+					837F1DF327CADB1F00C249DA = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					837F1E0927CADB3300C249DA = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = 837F1DEF27CADB1F00C249DA /* Build configuration list for PBXProject "GPG Tap Notifier" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 837F1DEB27CADB1F00C249DA;
+			packageReferences = (
+				83C17BC22820349F00EC59BB /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
+			);
+			productRefGroup = 837F1DF527CADB1F00C249DA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				837F1DF327CADB1F00C249DA /* GPG Tap Notifier */,
+				837F1E0927CADB3300C249DA /* GPG Tap Notifier Agent */,
+				8334A630282031D000820038 /* GPG Tap Notifier Installer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		837F1DF227CADB1F00C249DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				837F1DFF27CADB2000C249DA /* Preview Assets.xcassets in Resources */,
+				837F1DFC27CADB2000C249DA /* Assets.xcassets in Resources */,
+				83A054B928088AD90033CD5E /* GpgTapNotifier.help in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		837F1E0827CADB3300C249DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				837F1E1427CADB3500C249DA /* Preview Assets.xcassets in Resources */,
+				837F1E1127CADB3500C249DA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		83A054BD280894CD0033CD5E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# From https://marioaguzman.wordpress.com/2020/09/12/auth/\n\ncd \"GpgTapNotifier/GpgTapNotifier.help/Contents/Resources/en.lproj\"\n\nhiutil -I corespotlight -Caf GpgTapNotifier.cshelpindex -vv .\nhiutil -I lsm  -Caf GpgTapNotifier.helpindex -vv .\n\n# Not required. Prints out a summary of the index.\nhiutil -I corespotlight -Tvf GpgTapNotifier.cshelpindex\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8334A62D282031D000820038 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8334A634282031D000820038 /* MainCommand.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		837F1DF027CADB1F00C249DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				837FD81A27E6AB5000CDD61B /* FilePathItemView.swift in Sources */,
+				835F7A9527DEC8C60046D482 /* GpgAgentConfViewModel.swift in Sources */,
+				837F1DFA27CADB1F00C249DA /* ContentView.swift in Sources */,
+				831CC89F27D07884002D8A6D /* GpgAgentConfSectionView.swift in Sources */,
+				83C2E71B27E4464900FB7743 /* FilePathsView.swift in Sources */,
+				837F1DF827CADB1F00C249DA /* GpgTapNotifierApp.swift in Sources */,
+				837FD81C27E6BA3500CDD61B /* NotificationMessageEditView.swift in Sources */,
+				835F7A9327DE87D30046D482 /* AsyncUtils.swift in Sources */,
+				831CC8A127D07D0F002D8A6D /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		837F1E0627CADB3300C249DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				837F1E1B27CADF1F00C249DA /* main.swift in Sources */,
+				837F1E0D27CADB3300C249DA /* GpgTapNotifierAgentApp.swift in Sources */,
+				8345C08D27EA37A3000413FF /* ReadCompletionUtils.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		8334A635282031D000820038 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ASJT2NYP59;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.palantir.gpg-tap-notifier-installer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		8334A636282031D000820038 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ASJT2NYP59;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.palantir.gpg-tap-notifier-installer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		837F1E0127CADB2000C249DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		837F1E0227CADB2000C249DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		837F1E0427CADB2000C249DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GpgTapNotifier/GpgTapNotifier.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GpgTapNotifier/Preview Content\"";
+				DEVELOPMENT_TEAM = PXSBYN8444;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GpgTapNotifier/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© Palantir Technologies, Inc.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.palantir.gpg-tap-notifier";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		837F1E0527CADB2000C249DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GpgTapNotifier/GpgTapNotifier.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GpgTapNotifier/Preview Content\"";
+				DEVELOPMENT_TEAM = PXSBYN8444;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GpgTapNotifier/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© Palantir Technologies, Inc.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.palantir.gpg-tap-notifier";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		837F1E1727CADB3500C249DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GpgTapNotifierAgent/GpgTapNotifierAgent.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GpgTapNotifierAgent/Preview Content\"";
+				DEVELOPMENT_TEAM = PXSBYN8444;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GpgTapNotifierAgent/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© Palantir Technologies, Inc.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.palantir.gpg-tap-notifier-agent";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		837F1E1827CADB3500C249DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GpgTapNotifierAgent/GpgTapNotifierAgent.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"GpgTapNotifierAgent/Preview Content\"";
+				DEVELOPMENT_TEAM = PXSBYN8444;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GpgTapNotifierAgent/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© Palantir Technologies, Inc.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.palantir.gpg-tap-notifier-agent";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8334A637282031D000820038 /* Build configuration list for PBXNativeTarget "GPG Tap Notifier Installer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8334A635282031D000820038 /* Debug */,
+				8334A636282031D000820038 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		837F1DEF27CADB1F00C249DA /* Build configuration list for PBXProject "GPG Tap Notifier" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				837F1E0127CADB2000C249DA /* Debug */,
+				837F1E0227CADB2000C249DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		837F1E0327CADB2000C249DA /* Build configuration list for PBXNativeTarget "GPG Tap Notifier" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				837F1E0427CADB2000C249DA /* Debug */,
+				837F1E0527CADB2000C249DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		837F1E1627CADB3500C249DA /* Build configuration list for PBXNativeTarget "GPG Tap Notifier Agent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				837F1E1727CADB3500C249DA /* Debug */,
+				837F1E1827CADB3500C249DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		83C17BC22820349F00EC59BB /* XCRemoteSwiftPackageReference "swift-argument-parser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-argument-parser.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8334A62B282024E900820038 /* GpgTapNotifierConfigLib */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GpgTapNotifierConfigLib;
+		};
+		8334A638282031EF00820038 /* GpgTapNotifierConfigLib */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GpgTapNotifierConfigLib;
+		};
+		83C17BC32820349F00EC59BB /* ArgumentParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 83C17BC22820349F00EC59BB /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = ArgumentParser;
+		};
+		83EC6A9A2820828400A0759F /* GpgTapNotifierUserDefaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GpgTapNotifierUserDefaults;
+		};
+		83EC6A9C2820828F00A0759F /* GpgTapNotifierUserDefaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GpgTapNotifierUserDefaults;
+		};
+		83EC6A9E2820829400A0759F /* GpgTapNotifierUserDefaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GpgTapNotifierUserDefaults;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 837F1DEC27CADB1F00C249DA /* Project object */;
+}

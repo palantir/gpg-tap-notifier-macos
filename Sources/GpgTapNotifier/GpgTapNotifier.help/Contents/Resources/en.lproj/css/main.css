@@ -1,0 +1,13 @@
+body {
+    font-family: -apple-system, sans-serif;
+    color: #333;
+}
+
+a {
+    color: #0070c9;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

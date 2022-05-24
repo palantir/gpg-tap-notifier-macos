@@ -1,0 +1,64 @@
+// Copyright 2022 Palantir Technologies, Inc. All rights reserved.
+// Licensed under the Apache License, Version 2.0.
+
+import SwiftUI
+import GpgTapNotifierUserDefaults
+
+struct ContentView: View {
+    @AppStorage(AppUserDefaults.gpgAgentConfPath.key, store: AppUserDefaults.suite)
+    private var gpgAgentConfPath: URL = AppUserDefaults.gpgAgentConfPath.getDefault()
+    @AppStorage(AppUserDefaults.gpgconfPath.key, store: AppUserDefaults.suite)
+    var gpgconfPath: URL = URL(fileURLWithPath:  AppUserDefaults.gpgconfPath.getDefault())
+    @AppStorage(AppUserDefaults.scdaemonPath.key, store: AppUserDefaults.suite)
+    var scdaemonPath: URL = URL(fileURLWithPath: AppUserDefaults.scdaemonPath.getDefault())
+
+    @State private var showingNotificationMessageEditSheet = false
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Welcome to GPG Tap Notifier")
+                .font(.title)
+                .fixedSize()
+            Group {
+                Text("This application is a hack.").bold() +
+                Text(" It provides reminders to tap your YubiKey by wrapping communication between gpg-agent and scdaemon. This mechanism works well in most cases, but you may see strange behavior from time to time.")
+            }
+                .font(.body)
+                .lineLimit(3)
+                .padding(.vertical)
+                .fixedSize(horizontal: false, vertical: true)
+
+            Divider()
+
+            GpgAgentConfSectionView(
+                gpgAgentConfPath: $gpgAgentConfPath,
+                gpgconfPath: $gpgconfPath,
+                scdaemonPath: self.scdaemonPath)
+                .padding(.vertical)
+
+            Divider()
+
+            FilePathsView(
+                gpgAgentConfPath: $gpgAgentConfPath,
+                gpgconfPath: $gpgconfPath,
+                scdaemonPath: $scdaemonPath)
+                .padding(.vertical)
+
+            HStack {
+                Spacer()
+                Button("Configure Notification") {
+                    self.showingNotificationMessageEditSheet = true
+                }
+                .sheet(isPresented: $showingNotificationMessageEditSheet) {
+                    NotificationMessageEditView(dismiss: { self.showingNotificationMessageEditSheet = false })
+                }
+            }
+        }.padding(40)
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
