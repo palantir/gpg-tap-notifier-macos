@@ -11,6 +11,8 @@ struct ContentView: View {
     var gpgconfPath: URL = URL(fileURLWithPath:  AppUserDefaults.gpgconfPath.getDefault())
     @AppStorage(AppUserDefaults.scdaemonPath.key, store: AppUserDefaults.suite)
     var scdaemonPath: URL = URL(fileURLWithPath: AppUserDefaults.scdaemonPath.getDefault())
+    @AppStorage(AppUserDefaults.customHelpMessage.key, store: AppUserDefaults.suite)
+    private var customHelpMessage: String?
 
     @State private var showingNotificationMessageEditSheet = false
 
@@ -26,6 +28,13 @@ struct ContentView: View {
                 .font(.body)
                 .lineLimit(3)
                 .padding(.vertical)
+                .fixedSize(horizontal: false, vertical: true)
+
+            Text(customHelpMessage ?? "")
+                .font(.body)
+                .lineLimit(3)
+                .padding(customHelpMessage != nil ? [.bottom] : [])
+                .opacity(customHelpMessage != nil ? 1 : 0)
                 .fixedSize(horizontal: false, vertical: true)
 
             Divider()
