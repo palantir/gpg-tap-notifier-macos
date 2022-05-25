@@ -46,4 +46,8 @@ public struct AppUserDefaults  {
     public static let automaticallyRestartGpgAgent = UserDefaultsConfig(
         key: "automaticallyRestartGpgAgent",
         getDefault: { true })
+
+    public static let customHelpMessage = UserDefaultsConfig<String?>(
+        key: "customHelpMessage",
+        getDefault: { nil })
 }

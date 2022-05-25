@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		830FFF3D283EBFA200D245D2 /* SetCustomHelpMessageCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830FFF3C283EBFA200D245D2 /* SetCustomHelpMessageCommand.swift */; };
+		830FFF3F283EC0E900D245D2 /* UnsetCustomHelpMessageCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830FFF3E283EC0E900D245D2 /* UnsetCustomHelpMessageCommand.swift */; };
 		8310601E27CDEC3A00824D28 /* GPG Tap Notifier Agent.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 837F1E0A27CADB3300C249DA /* GPG Tap Notifier Agent.app */; };
 		831CC89F27D07884002D8A6D /* GpgAgentConfSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831CC89E27D07884002D8A6D /* GpgAgentConfSectionView.swift */; };
 		831CC8A127D07D0F002D8A6D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831CC8A027D07D0F002D8A6D /* Constants.swift */; };
@@ -60,6 +62,8 @@
 
 /* Begin PBXFileReference section */
 		830285872804D9CD008B84CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		830FFF3C283EBFA200D245D2 /* SetCustomHelpMessageCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCustomHelpMessageCommand.swift; sourceTree = "<group>"; };
+		830FFF3E283EC0E900D245D2 /* UnsetCustomHelpMessageCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsetCustomHelpMessageCommand.swift; sourceTree = "<group>"; };
 		831CC89E27D07884002D8A6D /* GpgAgentConfSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GpgAgentConfSectionView.swift; sourceTree = "<group>"; };
 		831CC8A027D07D0F002D8A6D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8334A6292820247E00820038 /* GpgTapNotifierConfigLib */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = GpgTapNotifierConfigLib; sourceTree = "<group>"; };
@@ -143,6 +147,8 @@
 			children = (
 				83C17BC6282048B500EC59BB /* GpgTapNotifierInstaller.entitlements */,
 				8334A633282031D000820038 /* MainCommand.swift */,
+				830FFF3C283EBFA200D245D2 /* SetCustomHelpMessageCommand.swift */,
+				830FFF3E283EC0E900D245D2 /* UnsetCustomHelpMessageCommand.swift */,
 			);
 			path = GpgTapNotifierInstaller;
 			sourceTree = "<group>";
@@ -386,7 +392,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				830FFF3D283EBFA200D245D2 /* SetCustomHelpMessageCommand.swift in Sources */,
 				8334A634282031D000820038 /* MainCommand.swift in Sources */,
+				830FFF3F283EC0E900D245D2 /* UnsetCustomHelpMessageCommand.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,12 @@ let AGENT_INNER_PATH = "Contents/Library/GPG Tap Notifier Agent.app/Contents/Mac
 
 @main
 struct MainCommand: AsyncParsableCommand {
-    static let configuration = CommandConfiguration(subcommands: [EnableCommand.self, DisableCommand.self])
+    static let configuration = CommandConfiguration(subcommands: [
+        EnableCommand.self,
+        DisableCommand.self,
+        SetCustomHelpMessageCommand.self,
+        UnsetCustomHelpMessageCommand.self
+    ])
 }
 
 struct EnableCommand: AsyncParsableCommand {
