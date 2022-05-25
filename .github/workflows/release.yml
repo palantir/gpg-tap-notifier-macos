@@ -1,0 +1,29 @@
+name: Release
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  build:
+    name: Build
+    uses: ./.github/workflows/build.yml
+    with:
+      version: "{{ github.ref_name }}"
+
+  # Not fully tested
+  github_release:
+    name: Upload to GitHub Release
+    needs: [build]
+    steps:
+      - name: Download .dmg.zip
+        uses: actions/download-artifact@v3
+        with:
+          name: GPG_Tap_Notifier.dmg.zip
+      - name: Unzip
+        run: unzip GPG_Tap_Notifier.dmg.zip
+      - name: Upload release artifact
+        uses: softprops/action-gh-release@v1
+        with:
+          files: GPG_Tap_Notifier.dmg

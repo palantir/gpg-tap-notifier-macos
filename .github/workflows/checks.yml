@@ -1,0 +1,11 @@
+name: Checks
+
+on:
+  - push
+
+jobs:
+  build:
+    name: Build
+    uses: ./.github/workflows/build.yml
+    with:
+      version: "v0.0.0"
