@@ -425,7 +425,7 @@
 				CODE_SIGN_ENTITLEMENTS = GpgTapNotifierInstaller/GpgTapNotifierInstaller.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ASJT2NYP59;
+				DEVELOPMENT_TEAM = PXSBYN8444;
 				ENABLE_HARDENED_RUNTIME = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.palantir.gpg-tap-notifier-installer";
@@ -441,7 +441,7 @@
 				CODE_SIGN_ENTITLEMENTS = GpgTapNotifierInstaller/GpgTapNotifierInstaller.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ASJT2NYP59;
+				DEVELOPMENT_TEAM = PXSBYN8444;
 				ENABLE_HARDENED_RUNTIME = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.palantir.gpg-tap-notifier-installer";
