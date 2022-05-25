@@ -422,6 +422,7 @@
 		8334A635282031D000820038 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = GpgTapNotifierInstaller/GpgTapNotifierInstaller.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ASJT2NYP59;
@@ -437,6 +438,7 @@
 		8334A636282031D000820038 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = GpgTapNotifierInstaller/GpgTapNotifierInstaller.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ASJT2NYP59;
