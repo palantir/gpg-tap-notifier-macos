@@ -15,6 +15,14 @@ struct ContentView: View {
     private var customHelpMessage: String?
 
     @State private var showingNotificationMessageEditSheet = false
+    
+    var customHelpMessageText: Text {
+        if #available(macOS 12, *) {
+            return Text(try! AttributedString(markdown: .init(customHelpMessage ?? "")))
+        } else {
+            return Text(customHelpMessage ?? "")
+        }
+    }
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -30,7 +38,7 @@ struct ContentView: View {
                 .padding(.vertical)
                 .fixedSize(horizontal: false, vertical: true)
 
-            Text(customHelpMessage ?? "")
+            customHelpMessageText
                 .font(.body)
                 .lineLimit(3)
                 .padding(customHelpMessage != nil ? [.bottom] : [])
