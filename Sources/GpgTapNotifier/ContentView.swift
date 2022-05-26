@@ -29,10 +29,7 @@ struct ContentView: View {
             Text("Welcome to GPG Tap Notifier")
                 .font(.title)
                 .fixedSize()
-            Group {
-                Text("This application is a hack.").bold() +
-                Text(" It provides reminders to tap your YubiKey by wrapping communication between gpg-agent and scdaemon. This mechanism works well in most cases, but you may see strange behavior from time to time.")
-            }
+            Text("This application provides reminders to tap your security device (e.g. YubiKey) by wrapping communication between gpg-agent and scdaemon. This mechanism works well in most cases, but you may see false positives from time to time.")
                 .font(.body)
                 .lineLimit(3)
                 .padding(.vertical)
