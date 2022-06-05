@@ -5,7 +5,8 @@ on:
       version:
         description: |
           Expected to be in the format: vX.Y.Z
-          Used for CFBundleShortVersionString after removing the leading "v"
+          Used for CFBundleVersion and CFBundleShortVersionString after removing the leading "v"
+          https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleversion
           https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleshortversionstring
         required: true
         type: string
@@ -76,6 +77,7 @@ jobs:
             -scheme "${{ inputs.scheme }}" \
             DSTROOT="${{ inputs.dstroot_path }}" \
             MARKETING_VERSION="${{ env.MARKETING_VERSION }}" \
+            CURRENT_PROJECT_VERSION="${{ env.MARKETING_VERSION }}.${{ github.run_id }}" \
             install | xcpretty
 
       - name: Package ${{ env.PRODUCT_MODULE_NAME }}.dmg
