@@ -5,6 +5,8 @@ on:
     types:
       - published
 
+permissions: {}
+
 jobs:
   build:
     name: Build
@@ -17,6 +19,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Upload to GitHub Release
     needs: [build]
+    permissions:
+      # Needed for https://github.com/softprops/action-gh-release#permissions
+      contents: write
     steps:
       - name: Download .dmg.zip
         id: download_dmg_artifact

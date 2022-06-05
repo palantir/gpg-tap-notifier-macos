@@ -24,6 +24,9 @@ on:
       dstroot_path:
         default: "/tmp/GPG Tap Notifier.dst"
         type: string
+
+permissions: {}
+
 jobs:
 
   build:
