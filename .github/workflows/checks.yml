@@ -2,7 +2,8 @@ name: Checks
 
 on:
   push:
-    branches:
+    tags-ignore:
+      - '**'
 
 jobs:
   build:
