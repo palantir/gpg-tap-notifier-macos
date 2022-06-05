@@ -87,6 +87,10 @@ jobs:
             -volname "${{ env.PRODUCT_NAME }}" \
             "$DMG_PATH"
 
+      - name: Document release artifact SHAs
+        run: |
+          shasum --algorithm 512 "${{ env.DMG_PATH }}"
+
       - name: Upload ${{ env.PRODUCT_MODULE_NAME }}.dmg
         uses: actions/upload-artifact@v3
         with:
