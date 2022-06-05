@@ -10,7 +10,7 @@ jobs:
     name: Build
     uses: ./.github/workflows/build.yml
     with:
-      version: "{{ github.ref_name }}"
+      version: "${{ github.ref_name }}"
 
   # Not fully tested
   github_release:
