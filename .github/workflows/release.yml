@@ -30,4 +30,4 @@ jobs:
           append_body: true
           body: |
             ---
-            Release artifacts generated from [GitHub actions](/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            Release artifacts generated from [GitHub actions](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}).
