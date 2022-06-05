@@ -9,21 +9,26 @@ on:
           https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleshortversionstring
         required: true
         type: string
+      xcode_version:
+        default: "13.4"
+        type: string
+      scheme:
+        description: |
+          The SCHEME value here is the name of the default Xcode project target.
+          It can also be retrieved through the following automatically, but let's
+          just set it to save a job step and be explicit.
+
+            $ xcodebuild -list -json | jq --raw-output '.project.schemes[0]'
+        default: "GPG Tap Notifier"
+        type: string
+      dstroot_path:
+        default: "/tmp/GPG Tap Notifier.dst"
+        type: string
 jobs:
 
   build:
     name: Build macOS
     runs-on: macos-12
-    env:
-      XCODE_VERSION: "13.4"
-      # The SCHEME value here is the name of the default Xcode project target.
-      # It can also be retrieved through the following automatically, but let's
-      # just set it to save a job step and be explicit.
-      #
-      #   $ xcodebuild -list -json | jq --raw-output '.project.schemes[0]'
-      #
-      SCHEME: "GPG Tap Notifier"
-      DSTROOT_PATH: "/tmp/GPG Tap Notifier.dst"
     defaults:
       run:
         working-directory: Sources
@@ -40,7 +45,7 @@ jobs:
           echo "MARKETING_VERSION=${BASH_REMATCH[1]}" >> $GITHUB_ENV
       - name: Select Xcode
         run: |
-          sudo xcode-select -switch "/Applications/Xcode_${{ env.XCODE_VERSION }}.app"
+          sudo xcode-select -switch "/Applications/Xcode_${{ inputs.xcode_version }}.app"
           /usr/bin/xcodebuild -version
 
       # From https://betterprogramming.pub/indie-mac-app-devops-with-github-actions-b16764a3ebe7
@@ -49,7 +54,7 @@ jobs:
           # DSTROOT seems to differ between "xcodebuild -showBuildSettings" and
           # "xcodebuild install". Set it to a hard-coded path so this is
           # predictable.
-          XCODE_BUILD_SETTINGS=$(xcodebuild -scheme "${{ env.SCHEME }}" DSTROOT="${{ env.DSTROOT_PATH }}" -showBuildSettings -json)
+          XCODE_BUILD_SETTINGS=$(xcodebuild -scheme "${{ inputs.scheme }}" DSTROOT="${{ inputs.dstroot_path }}" -showBuildSettings -json)
 
           function set-env-from-proj {
             envValue=$(echo $XCODE_BUILD_SETTINGS | jq --raw-output ".[0].buildSettings.$1")
@@ -65,8 +70,8 @@ jobs:
       - name: Run xcodebuild install
         run: |
           xcodebuild \
-            -scheme "${{ env.SCHEME }}" \
-            DSTROOT="${{ env.DSTROOT_PATH }}" \
+            -scheme "${{ inputs.scheme }}" \
+            DSTROOT="${{ inputs.dstroot_path }}" \
             MARKETING_VERSION="${{ env.MARKETING_VERSION }}" \
             install | xcpretty
 
