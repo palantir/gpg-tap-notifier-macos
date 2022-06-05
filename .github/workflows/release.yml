@@ -14,7 +14,6 @@ jobs:
     with:
       version: "${{ github.ref_name }}"
 
-  # Not fully tested
   github_release:
     runs-on: ubuntu-latest
     name: Upload to GitHub Release
