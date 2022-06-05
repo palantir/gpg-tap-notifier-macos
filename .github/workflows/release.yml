@@ -27,3 +27,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: "${{ steps.download_dmg_artifact.outputs.download-path }}/GPG_Tap_Notifier.dmg"
+          append_body: true
+          body: |
+            ---
+            Release artifacts generated from [GitHub actions](/${{ github.repository }}/actions/runs/${{ github.run_id }})
