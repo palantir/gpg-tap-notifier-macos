@@ -1,7 +1,8 @@
 name: Checks
 
 on:
-  - push
+  push:
+    branches:
 
 jobs:
   build:
