@@ -24,7 +24,7 @@ jobs:
         with:
           name: GPG_Tap_Notifier.dmg.zip
       - name: Unzip
-        run: unzip "${{ steps.download_dmg_artifact.outputs.download-path }}/*.zip
+        run: unzip "${{ steps.download_dmg_artifact.outputs.download-path }}/*.zip"
       - name: Upload release artifact
         uses: softprops/action-gh-release@v1
         with:
