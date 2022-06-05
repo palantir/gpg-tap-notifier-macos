@@ -15,3 +15,21 @@ jobs:
     uses: ./.github/workflows/build.yml
     with:
       version: "v0.0.0"
+
+  test:
+    name: Test
+    runs-on: macos-12
+    env:
+      XCODE_VERSION: "13.4"
+    steps:
+      - uses: actions/checkout@v3
+
+      # It would be preferable to automatically run all tests in the Xcode
+      # project, but I'm not aware of a command that does that. The "xcodebuild
+      # test" command requires setting up a test plan.
+      #
+      # At the moment GpgTapNotifierConfigLib is the only scheme containing
+      # tests, so we'll hard-code this for now.
+      - name: Test GpgTapNotifierConfigLib
+        working-directory: Sources/GpgTapNotifierConfigLib
+        run: swift test 
