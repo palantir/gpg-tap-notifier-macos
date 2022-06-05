@@ -99,5 +99,5 @@ jobs:
       - name: Upload ${{ env.PRODUCT_MODULE_NAME }}.dmg
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ env.PRODUCT_MODULE_NAME }}.dmg.zip
+          name: ${{ env.PRODUCT_MODULE_NAME }}.dmg
           path: "${{ env.DMG_PATH }}"

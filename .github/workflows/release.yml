@@ -23,11 +23,11 @@ jobs:
       # Needed for https://github.com/softprops/action-gh-release#permissions
       contents: write
     steps:
-      - name: Download .dmg.zip
+      - name: Download .dmg
         id: download_dmg_artifact
         uses: actions/download-artifact@v3
         with:
-          name: GPG_Tap_Notifier.dmg.zip
+          name: GPG_Tap_Notifier.dmg
       - name: Upload release artifact
         uses: softprops/action-gh-release@v1
         with:
