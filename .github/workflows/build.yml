@@ -39,6 +39,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Parse version
+        id: parse-version
         # By convention GitHub release tags start with "v". Strip this leading
         # character to create the Xcode MARKETING_VERSION.
         run: |
@@ -46,7 +47,7 @@ jobs:
           if [[ ! "${{ inputs.version }}" =~ $VERSION_REGEX ]]; then
               exit 1
           fi
-          echo "MARKETING_VERSION=${BASH_REMATCH[1]}" >> $GITHUB_ENV
+          echo "::set-output name=MARKETING_VERSION::${BASH_REMATCH[1]}"
       - name: Select Xcode
         run: |
           sudo xcode-select -switch "/Applications/Xcode_${{ inputs.xcode_version }}.app"
@@ -54,50 +55,52 @@ jobs:
 
       # From https://betterprogramming.pub/indie-mac-app-devops-with-github-actions-b16764a3ebe7
       - name: Read Xcode build settings
+        id: build-settings
         run: |
           # DSTROOT seems to differ between "xcodebuild -showBuildSettings" and
           # "xcodebuild install". Set it to a hard-coded path so this is
           # predictable.
           XCODE_BUILD_SETTINGS=$(xcodebuild -scheme "${{ inputs.scheme }}" DSTROOT="${{ inputs.dstroot_path }}" -showBuildSettings -json)
 
-          function set-env-from-proj {
-            envValue=$(echo $XCODE_BUILD_SETTINGS | jq --raw-output ".[0].buildSettings.$1")
-            echo "$1=$envValue" >> $GITHUB_ENV
+          function set-output-from-proj {
+            value=$(echo $XCODE_BUILD_SETTINGS | jq --raw-output ".[0].buildSettings.$1")
+            echo "::set-output name=$1::$value"
           }
 
           # https://developer.apple.com/library/archive/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html
-          set-env-from-proj FULL_PRODUCT_NAME
-          set-env-from-proj INSTALL_DIR # Equivalent to $DSTROOT/INSTALL_PATH
-          set-env-from-proj PRODUCT_MODULE_NAME
-          set-env-from-proj PRODUCT_NAME
+          set-output-from-proj FULL_PRODUCT_NAME
+          set-output-from-proj INSTALL_DIR # Equivalent to $DSTROOT/INSTALL_PATH
+          set-output-from-proj PRODUCT_MODULE_NAME
+          set-output-from-proj PRODUCT_NAME
 
       - name: Run xcodebuild install
         run: |
           xcodebuild \
             -scheme "${{ inputs.scheme }}" \
             DSTROOT="${{ inputs.dstroot_path }}" \
-            MARKETING_VERSION="${{ env.MARKETING_VERSION }}" \
-            CURRENT_PROJECT_VERSION="${{ env.MARKETING_VERSION }}.${{ github.run_id }}" \
+            MARKETING_VERSION="${{ steps.parse-version.outputs.MARKETING_VERSION }}" \
+            CURRENT_PROJECT_VERSION="${{ steps.parse-version.outputs.MARKETING_VERSION }}.${{ github.run_id }}" \
             install | xcpretty
 
-      - name: Package ${{ env.PRODUCT_MODULE_NAME }}.dmg
+      - name: Package ${{ steps.build-settings.outputs.PRODUCT_MODULE_NAME }}.dmg
+        id: package-dmg
         run: |
           # Using /private/tmp over /tmp due to https://github.com/actions/upload-artifact/issues/92
-          DMG_PATH="/private/tmp/${{ env.PRODUCT_MODULE_NAME }}.dmg"
-          echo "DMG_PATH=$DMG_PATH" >> $GITHUB_ENV
+          DMG_PATH="/private/tmp/${{ steps.build-settings.outputs.PRODUCT_MODULE_NAME }}.dmg"
+          echo "::set-output name=DMG_PATH::$DMG_PATH"
 
           hdiutil create \
             -fs HFS+ \
-            -srcfolder "${{ env.INSTALL_DIR }}/${{ env.FULL_PRODUCT_NAME }}" \
-            -volname "${{ env.PRODUCT_NAME }}" \
+            -srcfolder "${{ steps.build-settings.outputs.INSTALL_DIR }}/${{ steps.build-settings.outputs.FULL_PRODUCT_NAME }}" \
+            -volname "${{ steps.build-settings.outputs.PRODUCT_NAME }}" \
             "$DMG_PATH"
 
       - name: Document release artifact SHAs
         run: |
-          shasum --algorithm 512 "${{ env.DMG_PATH }}"
+          shasum --algorithm 512 "${{ steps.package-dmg.outputs.DMG_PATH }}"
 
-      - name: Upload ${{ env.PRODUCT_MODULE_NAME }}.dmg
+      - name: Upload ${{ steps.build-settings.outputs.PRODUCT_MODULE_NAME }}.dmg
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ env.PRODUCT_MODULE_NAME }}.dmg
-          path: "${{ env.DMG_PATH }}"
+          name: ${{ steps.build-settings.outputs.PRODUCT_MODULE_NAME }}.dmg
+          path: "${{ steps.package-dmg.outputs.DMG_PATH }}"
