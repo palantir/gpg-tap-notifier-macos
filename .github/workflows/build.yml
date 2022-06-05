@@ -25,6 +25,9 @@ on:
       dstroot_path:
         default: "/tmp/GPG Tap Notifier.dst"
         type: string
+    outputs:
+      dmg_artifact_name:
+        value: ${{ jobs.build.outputs.dmg_artifact_name }}
 
 permissions: {}
 
@@ -36,6 +39,8 @@ jobs:
     defaults:
       run:
         working-directory: Sources
+    outputs:
+      dmg_artifact_name: ${{ steps.package-dmg.outputs.DMG_FILENAME }}
     steps:
       - uses: actions/checkout@v3
       - name: Parse version
@@ -85,8 +90,11 @@ jobs:
       - name: Package ${{ steps.build-settings.outputs.PRODUCT_MODULE_NAME }}.dmg
         id: package-dmg
         run: |
+          DMG_FILENAME="${{ steps.build-settings.outputs.PRODUCT_MODULE_NAME }}.dmg"
+          echo "::set-output name=DMG_FILENAME::$DMG_FILENAME"
+
           # Using /private/tmp over /tmp due to https://github.com/actions/upload-artifact/issues/92
-          DMG_PATH="/private/tmp/${{ steps.build-settings.outputs.PRODUCT_MODULE_NAME }}.dmg"
+          DMG_PATH="/private/tmp/$DMG_FILENAME"
           echo "::set-output name=DMG_PATH::$DMG_PATH"
 
           hdiutil create \
@@ -99,8 +107,8 @@ jobs:
         run: |
           shasum --algorithm 512 "${{ steps.package-dmg.outputs.DMG_PATH }}"
 
-      - name: Upload ${{ steps.build-settings.outputs.PRODUCT_MODULE_NAME }}.dmg
+      - name: Upload ${{ steps.package-dmg.outputs.DMG_FILENAME }}
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ steps.build-settings.outputs.PRODUCT_MODULE_NAME }}.dmg
+          name: ${{ steps.package-dmg.outputs.DMG_FILENAME }}
           path: "${{ steps.package-dmg.outputs.DMG_PATH }}"

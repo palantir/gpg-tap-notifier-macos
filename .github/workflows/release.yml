@@ -27,11 +27,11 @@ jobs:
         id: download_dmg_artifact
         uses: actions/download-artifact@v3
         with:
-          name: GPG_Tap_Notifier.dmg
+          name: ${{ needs.build.outputs.dmg_artifact_name }}
       - name: Upload release artifact
         uses: softprops/action-gh-release@v1
         with:
-          files: "${{ steps.download_dmg_artifact.outputs.download-path }}/GPG_Tap_Notifier.dmg"
+          files: "${{ steps.download_dmg_artifact.outputs.download-path }}/${{ needs.build.outputs.dmg_artifact_name }}"
           append_body: true
           body: |
             ---
