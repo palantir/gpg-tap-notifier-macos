@@ -2,10 +2,11 @@ name: Build
 on:
   workflow_call:
     inputs:
-      # Expected to be in the format: vX.Y.Z
-      # Used for CFBundleShortVersionString after removing the leading "v"
-      # https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleshortversionstring
       version:
+        description: |
+          Expected to be in the format: vX.Y.Z
+          Used for CFBundleShortVersionString after removing the leading "v"
+          https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleshortversionstring
         required: true
         type: string
 jobs:
