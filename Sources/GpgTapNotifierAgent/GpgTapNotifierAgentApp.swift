@@ -142,7 +142,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.removeDeliveredNotification()
 
             let data = try! readCompletionResult(notification.userInfo!).get()
-            try! FileHandle.standardOutput.write(contentsOf: data)
+            try! FileHandle.standardError.write(contentsOf: data)
 
             scdaemonStdErr.fileHandleForReading.readInBackgroundAndNotify()
         }
