@@ -94,8 +94,10 @@ struct GpgAgentConfSectionView: View {
         .onChange(of: self.gpgAgentConfPath) { gpgAgentConfPath in
             Task {
                 await self.conf.reload(gpgAgentConfPath)
-                self.syncIsEnabledToggleFromConfig()
             }
+        }
+        .onChange(of: self.conf.isProxyInstalled) { _ in
+            self.syncIsEnabledToggleFromConfig()
         }
     }
 
