@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		46476798284EFC9900A7E6C9 /* DeliveryMechanism.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46476797284EFC9900A7E6C9 /* DeliveryMechanism.swift */; };
 		4647679A284EFD2D00A7E6C9 /* DeliveryMechanismNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46476799284EFD2D00A7E6C9 /* DeliveryMechanismNotification.swift */; };
+		4647679C284F009E00A7E6C9 /* DeliveryMechanismAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4647679B284F009E00A7E6C9 /* DeliveryMechanismAlert.swift */; };
 		830FFF3D283EBFA200D245D2 /* SetCustomHelpMessageCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830FFF3C283EBFA200D245D2 /* SetCustomHelpMessageCommand.swift */; };
 		830FFF3F283EC0E900D245D2 /* UnsetCustomHelpMessageCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830FFF3E283EC0E900D245D2 /* UnsetCustomHelpMessageCommand.swift */; };
 		8310601E27CDEC3A00824D28 /* GPG Tap Notifier Agent.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 837F1E0A27CADB3300C249DA /* GPG Tap Notifier Agent.app */; };
@@ -65,6 +66,7 @@
 /* Begin PBXFileReference section */
 		46476797284EFC9900A7E6C9 /* DeliveryMechanism.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryMechanism.swift; sourceTree = "<group>"; };
 		46476799284EFD2D00A7E6C9 /* DeliveryMechanismNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryMechanismNotification.swift; sourceTree = "<group>"; };
+		4647679B284F009E00A7E6C9 /* DeliveryMechanismAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryMechanismAlert.swift; sourceTree = "<group>"; };
 		830285872804D9CD008B84CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		830FFF3C283EBFA200D245D2 /* SetCustomHelpMessageCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCustomHelpMessageCommand.swift; sourceTree = "<group>"; };
 		830FFF3E283EC0E900D245D2 /* UnsetCustomHelpMessageCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsetCustomHelpMessageCommand.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				837F1E0C27CADB3300C249DA /* GpgTapNotifierAgentApp.swift */,
 				837F1E1A27CADF1F00C249DA /* main.swift */,
 				46476797284EFC9900A7E6C9 /* DeliveryMechanism.swift */,
+				4647679B284F009E00A7E6C9 /* DeliveryMechanismAlert.swift */,
 				46476799284EFD2D00A7E6C9 /* DeliveryMechanismNotification.swift */,
 				8345C08C27EA37A3000413FF /* ReadCompletionUtils.swift */,
 				837F1E1027CADB3500C249DA /* Assets.xcassets */,
@@ -424,6 +427,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4647679C284F009E00A7E6C9 /* DeliveryMechanismAlert.swift in Sources */,
 				837F1E1B27CADF1F00C249DA /* main.swift in Sources */,
 				837F1E0D27CADB3300C249DA /* GpgTapNotifierAgentApp.swift in Sources */,
 				8345C08D27EA37A3000413FF /* ReadCompletionUtils.swift in Sources */,

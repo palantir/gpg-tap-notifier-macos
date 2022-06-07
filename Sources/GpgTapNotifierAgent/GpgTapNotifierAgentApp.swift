@@ -22,6 +22,7 @@ import GpgTapNotifierUserDefaults
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     let logger = Logger()
+    // TODO: Add config to allow swapping delivery mechanisms.
     let deliveryMechanism = DeliveryMechanismNotification()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
