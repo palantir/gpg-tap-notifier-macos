@@ -33,12 +33,21 @@ extension DeliveryMechanismAlert: DeliveryMechanism {
         alert.informativeText = body
         alert.alertStyle = .informational
 
+        // NOTE: According to AppKit docs, the order buttons are added affect
+        // what code they're assigned in the modalResponse.
         alert.addButton(withTitle: "Close")
+        alert.addButton(withTitle: "Open Configuration")
 
         self.currentAlert = alert
 
-        alert.beginSheetModal(for: alertWindow) { _ in
+        alert.beginSheetModal(for: alertWindow) { modalResponse in
             self.currentAlert = nil
+
+            // Corresponds with the "Open Configuration" button since it was
+            // added second. What a strange API.
+            if modalResponse == NSApplication.ModalResponse.alertSecondButtonReturn {
+                openConfigurationApp()
+            }
         }
     }
 
@@ -49,4 +58,25 @@ extension DeliveryMechanismAlert: DeliveryMechanism {
         self.currentAlert = nil
         alertWindow.endSheet(alert.window)
     }
+}
+
+func openConfigurationApp() {
+    guard let configurationAppUrl = guessConfigurationAppUrl() else {
+        return
+    }
+    NSWorkspace.shared.open(configurationAppUrl)
+}
+
+func guessConfigurationAppUrl() -> URL? {
+    let agentBundleUrl = Bundle.main.bundleURL
+
+    // The agent bundle lives within "Contents/Library/GPG Tap Notifier Agent.app". Trim these paths.
+    let mainAppUrl = agentBundleUrl.deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
+    if mainAppUrl.path.hasSuffix(".app") {
+        return mainAppUrl
+    }
+
+    // The Agent app may not be inside the normal GUI app's Contents/Library dir during development.
+    // Guessing from the GUI app's bundle identifier as the next
+    return NSWorkspace.shared.urlForApplication(withBundleIdentifier: "com.palantir.gpg-tap-notifier")
 }
