@@ -12,7 +12,6 @@ class DeliveryMechanismAlert {
             backing: .buffered,
             defer: false)
 
-        panel.center()
         panel.isFloatingPanel = true
 
         return panel
@@ -39,6 +38,11 @@ extension DeliveryMechanismAlert: DeliveryMechanism {
         alert.addButton(withTitle: "Open Configuration")
 
         self.currentAlert = alert
+
+        // During testing the invisible alert window somehow moved to the bottom
+        // left between reminders. Always center this window before we show the
+        // alert as a workaround.
+        alertWindow.center()
 
         alert.beginSheetModal(for: alertWindow) { modalResponse in
             self.currentAlert = nil
