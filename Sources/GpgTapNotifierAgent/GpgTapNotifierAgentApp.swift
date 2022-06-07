@@ -22,7 +22,7 @@ import GpgTapNotifierUserDefaults
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     let logger = Logger()
-    var currentNotificationIdentifier: String?
+    let deliveryMechanism = DeliveryMechanismNotification()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         // TODO: Create a security scoped bookmark for the scdaemon path and read so this agent works when sandboxed.
@@ -154,39 +154,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func sendNotification() {
-        let content = UNMutableNotificationContent()
-
         // Intentionally reading from UserDefaults on every notification rather than
         // setting up a Key-Value Observer (KVO). The KVO adds implementation complexity
         // and notifications aren't sent frequently enough to be worth caching.
-        content.title = AppUserDefaults.suite?.string(forKey: AppUserDefaults.notificationTitle.key) ?? AppUserDefaults.notificationTitle.getDefault()
-        content.body = AppUserDefaults.suite?.string(forKey: AppUserDefaults.notificationBody.key) ?? AppUserDefaults.notificationBody.getDefault()
+        let title = AppUserDefaults.suite?.string(forKey: AppUserDefaults.notificationTitle.key) ?? AppUserDefaults.notificationTitle.getDefault()
+        let body = AppUserDefaults.suite?.string(forKey: AppUserDefaults.notificationBody.key) ?? AppUserDefaults.notificationBody.getDefault()
 
-        // Always play a sound by default. Users can disable this in System Preferences.
-        // TODO: Consider making what sound plays configurable.
-        content.sound = .default
-
-        let currentNotificationIdentifier = UUID().uuidString
-        self.currentNotificationIdentifier = currentNotificationIdentifier
-        let request = UNNotificationRequest(identifier: currentNotificationIdentifier, content: content, trigger: nil)
-
-        UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
-                self.logger.error("Failed to deliver notification: \(error.localizedDescription)")
-
-                if self.currentNotificationIdentifier == currentNotificationIdentifier {
-                    self.currentNotificationIdentifier = nil
-                }
-            }
-        }
+        deliveryMechanism.present(title: title, body: body)
     }
 
     private func removeDeliveredNotification() {
-        guard let identifier = self.currentNotificationIdentifier else {
-            return
-        }
-
-        self.currentNotificationIdentifier = nil
-        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [identifier])
+        deliveryMechanism.dismiss()
     }
 }
