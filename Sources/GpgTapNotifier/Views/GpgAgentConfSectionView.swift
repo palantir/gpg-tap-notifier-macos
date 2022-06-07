@@ -20,9 +20,18 @@ struct GpgAgentConfSectionView: View {
     @AppStorage(AppUserDefaults.automaticallyRestartGpgAgent.key, store: AppUserDefaults.suite)
     var automaticallyRestartGpgAgent = AppUserDefaults.automaticallyRestartGpgAgent.getDefault()
 
-    @State private var isEnabledToggleValue: Bool = false
     @State private var isRestartingGpgAgent: Bool = false
 
+    /// The current toggle value. Do not update this outside of the
+    /// `syncIsEnabledToggleFromConfig` function. The sync function manages a
+    /// delicate 2-way binding between the toggle UI state and the config. It
+    /// properly sets the isNextEnabledUpdateFromHuman value.
+    ///
+    /// 2-way binding is a known difficult coding pattern. Ideally the toggle
+    /// value here is a 1-way binding with the config being the source of truth,
+    /// but the SwiftUI `Switch` view does not have a "controlled" mode, to use
+    /// React.js parlance.
+    @State private var isEnabledToggleValue: Bool = false
     /// This stateful value is a workaround for the inability to distinguish
     /// between human interaction of a SwiftUI switch and background updates to
     /// the keep its value up to date. Only the former (human interaction)
