@@ -25,7 +25,7 @@ struct GpgAgentConfSectionView: View {
     /// The current toggle value. Do not update this outside of the
     /// `syncIsEnabledToggleFromConfig` function. The sync function manages a
     /// delicate 2-way binding between the toggle UI state and the config. It
-    /// properly sets the isNextEnabledUpdateFromHuman value.
+    /// properly sets the `isNextEnabledToggleUpdateBackgroundRefresh` value.
     ///
     /// 2-way binding is a known difficult coding pattern. Ideally the toggle
     /// value here is a 1-way binding with the config being the source of truth,
@@ -36,7 +36,7 @@ struct GpgAgentConfSectionView: View {
     /// between human interaction of a SwiftUI switch and background updates to
     /// the keep its value up to date. Only the former (human interaction)
     /// should trigger gpg-agent restart logic.
-    @State private var isNextEnabledToggleUpdateFromHuman: Bool = true
+    @State private var isNextEnabledToggleUpdateBackgroundRefresh: Bool = false
 
     @StateObject var conf: GpgAgentConfViewModel = GpgAgentConfViewModel()
 
@@ -63,7 +63,7 @@ struct GpgAgentConfSectionView: View {
                     Toggle("Enabled", isOn: self.$isEnabledToggleValue)
                         .toggleStyle(.switch)
                         .fixedSize()
-                        .disabled(self.isRestartingGpgAgent || !self.isNextEnabledToggleUpdateFromHuman)
+                        .disabled(self.isRestartingGpgAgent || self.isNextEnabledToggleUpdateBackgroundRefresh)
                         .onChange(of: self.isEnabledToggleValue) { nextIsEnabled in
                             Task {
                                 try await onToggleChange(nextIsEnabled)
@@ -164,7 +164,7 @@ struct GpgAgentConfSectionView: View {
 
     func syncIsEnabledToggleFromConfig() {
         if self.isEnabledToggleValue != self.conf.isProxyInstalled {
-            self.isNextEnabledToggleUpdateFromHuman = false
+            self.isNextEnabledToggleUpdateBackgroundRefresh = true
         }
 
         self.isEnabledToggleValue = self.conf.isProxyInstalled
@@ -174,13 +174,13 @@ struct GpgAgentConfSectionView: View {
     func onToggleChange(_ nextIsEnabled: Bool) async throws {
         defer {
             // Resetting this value back to its default. Any logic in this view is expected
-            // to flip this back to false before toggling.
-            self.isNextEnabledToggleUpdateFromHuman = true
+            // to flip this back to true before toggling.
+            self.isNextEnabledToggleUpdateBackgroundRefresh = false
         }
 
         try self.conf.toggle(nextIsEnabled)
 
-        guard self.isNextEnabledToggleUpdateFromHuman, self.automaticallyRestartGpgAgent else {
+        guard !self.isNextEnabledToggleUpdateBackgroundRefresh, self.automaticallyRestartGpgAgent else {
             return
         }
 
