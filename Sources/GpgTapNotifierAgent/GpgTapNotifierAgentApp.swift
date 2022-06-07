@@ -122,13 +122,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     return
                 }
 
-                self.sendNotification()
+                self.presentReminder()
             }
         }
 
         NotificationCenter.default.addObserver(forName: FileHandle.readCompletionNotification, object: scdaemonStdOut.fileHandleForReading, queue: .main) { notification in
             notificationTask?.cancel()
-            self.removeDeliveredNotification()
+            self.dismissReminder()
 
             let data = try! readCompletionResult(notification.userInfo!).get()
             try! FileHandle.standardOutput.write(contentsOf: data)
@@ -138,7 +138,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         NotificationCenter.default.addObserver(forName: FileHandle.readCompletionNotification, object: scdaemonStdErr.fileHandleForReading, queue: .main) { notification in
             notificationTask?.cancel()
-            self.removeDeliveredNotification()
+            self.dismissReminder()
 
             let data = try! readCompletionResult(notification.userInfo!).get()
             try! FileHandle.standardError.write(contentsOf: data)
@@ -153,7 +153,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return scdaemon
     }
 
-    private func sendNotification() {
+    private func presentReminder() {
         // Intentionally reading from UserDefaults on every notification rather than
         // setting up a Key-Value Observer (KVO). The KVO adds implementation complexity
         // and notifications aren't sent frequently enough to be worth caching.
@@ -163,7 +163,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         deliveryMechanism.present(title: title, body: body)
     }
 
-    private func removeDeliveredNotification() {
+    private func dismissReminder() {
         deliveryMechanism.dismiss()
     }
 }
