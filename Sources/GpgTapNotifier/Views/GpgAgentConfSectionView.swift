@@ -174,15 +174,19 @@ struct GpgAgentConfSectionView: View {
 
     @MainActor
     func onToggleChange(_ nextIsEnabled: Bool) async throws {
-        defer {
-            // Resetting this value back to its default. Any logic in this view is expected
-            // to flip this back to true before toggling.
+        if self.isNextEnabledToggleUpdateBackgroundRefresh {
+            // The Switch was toggled, but only from due to the config changing
+            // on disk outside of this application. In that case there's no need
+            // to edit the config or restart gpg-agent. (Actually a gpg-agent
+            // restart may be required, but that's a complex condition to
+            // check.)
             self.isNextEnabledToggleUpdateBackgroundRefresh = false
+            return
         }
 
         try self.conf.toggle(nextIsEnabled)
 
-        guard !self.isNextEnabledToggleUpdateBackgroundRefresh, self.automaticallyRestartGpgAgent else {
+        guard self.automaticallyRestartGpgAgent else {
             return
         }
 
