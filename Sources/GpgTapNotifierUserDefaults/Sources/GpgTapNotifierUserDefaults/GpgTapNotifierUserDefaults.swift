@@ -50,4 +50,9 @@ public struct AppUserDefaults  {
     public static let customHelpMessage = UserDefaultsConfig<String?>(
         key: "customHelpMessage",
         getDefault: { nil })
+
+    public static let didEnableCommandCompletePreviously = UserDefaultsConfig(
+        key: "didEnableCommandPreviouslyComplete",
+        getDefault: { false }
+    )
 }

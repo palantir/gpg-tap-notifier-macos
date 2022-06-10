@@ -21,7 +21,17 @@ struct MainCommand: AsyncParsableCommand {
 struct EnableCommand: AsyncParsableCommand {
     static var configuration = CommandConfiguration(commandName: "enable")
 
+    @Flag(help: "Do not perform any actions if this command has already ran. This avoids re-enabling the app on upgrades if users have opened the GUI and disabled it.")
+    var noRepeatInstall = false
+
     func run() async throws {
+        let didEnableCommandCompletePreviously = AppUserDefaults.suite?.bool(forKey: AppUserDefaults.didEnableCommandCompletePreviously.key)
+            ?? AppUserDefaults.didEnableCommandCompletePreviously.getDefault()
+        if (didEnableCommandCompletePreviously && noRepeatInstall) {
+            print("Exiting with no modifications. This command has already ran successfully in the past.")
+            return
+        }
+
         let topLevelAppDir = Bundle.main.bundleURL
             .deletingLastPathComponent()
             .deletingLastPathComponent()
@@ -34,6 +44,8 @@ struct EnableCommand: AsyncParsableCommand {
         let conf = try await loadConfigModelFromUserDefaults()
         let next = conf.insertProxyConfig(agentBinPath: agentBinPath)
         try next.writeToDisk()
+
+        AppUserDefaults.suite?.set(true, forKey: AppUserDefaults.didEnableCommandCompletePreviously.key)
     }
 }
 
