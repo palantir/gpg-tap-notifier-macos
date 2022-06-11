@@ -6,7 +6,6 @@
 // directly inspired from https://github.com/klali/scdaemon-proxy
 
 import AppKit
-import SwiftUI
 import UserNotifications
 import Foundation
 import os
