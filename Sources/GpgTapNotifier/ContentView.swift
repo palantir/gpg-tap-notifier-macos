@@ -50,6 +50,9 @@ struct ContentView: View {
                 scdaemonPath: self.scdaemonPath)
                 .padding(.vertical)
 
+            DeliveryMechanismChooserView()
+                .padding(.vertical)
+
             Divider()
 
             FilePathsView(

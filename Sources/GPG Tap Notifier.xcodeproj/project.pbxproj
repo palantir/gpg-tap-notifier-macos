@@ -10,6 +10,7 @@
 		46476798284EFC9900A7E6C9 /* DeliveryMechanism.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46476797284EFC9900A7E6C9 /* DeliveryMechanism.swift */; };
 		4647679A284EFD2D00A7E6C9 /* DeliveryMechanismNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46476799284EFD2D00A7E6C9 /* DeliveryMechanismNotification.swift */; };
 		4647679C284F009E00A7E6C9 /* DeliveryMechanismAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4647679B284F009E00A7E6C9 /* DeliveryMechanismAlert.swift */; };
+		4693B649285535C500FCD249 /* DeliveryMechanismChooserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4693B648285535C500FCD249 /* DeliveryMechanismChooserView.swift */; };
 		46979AED28552F3E0026C4FD /* AutoReloadingDeliveryMechanism.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46979AEC28552F3E0026C4FD /* AutoReloadingDeliveryMechanism.swift */; };
 		830FFF3D283EBFA200D245D2 /* SetCustomHelpMessageCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830FFF3C283EBFA200D245D2 /* SetCustomHelpMessageCommand.swift */; };
 		830FFF3F283EC0E900D245D2 /* UnsetCustomHelpMessageCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830FFF3E283EC0E900D245D2 /* UnsetCustomHelpMessageCommand.swift */; };
@@ -68,6 +69,7 @@
 		46476797284EFC9900A7E6C9 /* DeliveryMechanism.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryMechanism.swift; sourceTree = "<group>"; };
 		46476799284EFD2D00A7E6C9 /* DeliveryMechanismNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryMechanismNotification.swift; sourceTree = "<group>"; };
 		4647679B284F009E00A7E6C9 /* DeliveryMechanismAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryMechanismAlert.swift; sourceTree = "<group>"; };
+		4693B648285535C500FCD249 /* DeliveryMechanismChooserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryMechanismChooserView.swift; sourceTree = "<group>"; };
 		46979AEC28552F3E0026C4FD /* AutoReloadingDeliveryMechanism.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoReloadingDeliveryMechanism.swift; sourceTree = "<group>"; };
 		830285872804D9CD008B84CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		830FFF3C283EBFA200D245D2 /* SetCustomHelpMessageCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCustomHelpMessageCommand.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				83C2E71A27E4464900FB7743 /* FilePathsView.swift */,
 				837FD81927E6AB5000CDD61B /* FilePathItemView.swift */,
 				837FD81B27E6BA3500CDD61B /* NotificationMessageEditView.swift */,
+				4693B648285535C500FCD249 /* DeliveryMechanismChooserView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4693B649285535C500FCD249 /* DeliveryMechanismChooserView.swift in Sources */,
 				837FD81A27E6AB5000CDD61B /* FilePathItemView.swift in Sources */,
 				835F7A9527DEC8C60046D482 /* GpgAgentConfViewModel.swift in Sources */,
 				837F1DFA27CADB1F00C249DA /* ContentView.swift in Sources */,

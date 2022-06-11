@@ -22,7 +22,6 @@ import GpgTapNotifierUserDefaults
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     let logger = Logger()
-    // TODO: Allow the user to change the delivery mechanism in the UI.
     var autoReloadingDeliveryMechanism = AutoReloadingDeliveryMechanism()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
