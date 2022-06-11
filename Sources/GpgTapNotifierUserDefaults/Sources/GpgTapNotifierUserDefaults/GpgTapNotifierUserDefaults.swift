@@ -31,6 +31,10 @@ public struct AppUserDefaults  {
         key: "gpgconfPath",
         getDefault: { "/usr/local/MacGPG2/bin/gpgconf" })
 
+    public static let reminderDeliveryMechanism = UserDefaultsConfig(
+        key: "reminderDeliveryMechanism",
+        getDefault: { ReminderDeliveryMechanismOption.notificationCenter })
+
     public static let notificationTimeoutSecs = UserDefaultsConfig(
         key: "notificationTimeoutSecs",
         getDefault: { 1.0 })

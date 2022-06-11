@@ -22,8 +22,8 @@ import GpgTapNotifierUserDefaults
 
 class AppDelegate: NSObject, NSApplicationDelegate {
     let logger = Logger()
-    // TODO: Add config to allow swapping delivery mechanisms.
-    let deliveryMechanism = DeliveryMechanismNotification()
+    // TODO: Allow the user to change the delivery mechanism in the UI.
+    var autoReloadingDeliveryMechanism = AutoReloadingDeliveryMechanism()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         // TODO: Create a security scoped bookmark for the scdaemon path and read so this agent works when sandboxed.
@@ -162,11 +162,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let title = AppUserDefaults.suite?.string(forKey: AppUserDefaults.notificationTitle.key) ?? AppUserDefaults.notificationTitle.getDefault()
         let body = AppUserDefaults.suite?.string(forKey: AppUserDefaults.notificationBody.key) ?? AppUserDefaults.notificationBody.getDefault()
 
+        var deliveryMechanism = autoReloadingDeliveryMechanism.get()
         deliveryMechanism.present(title: title, body: body)
     }
 
     @MainActor
     private func dismissReminder() {
+        var deliveryMechanism = autoReloadingDeliveryMechanism.get()
         deliveryMechanism.dismiss()
     }
 }
