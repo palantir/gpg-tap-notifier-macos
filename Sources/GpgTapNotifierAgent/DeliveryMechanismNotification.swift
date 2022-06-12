@@ -39,7 +39,7 @@ class DeliveryMechanismNotification: NSObject {
         UNUserNotificationCenter.current().delegate = self
 
         // For some reason .badge permissions are also required for .sound: https://stackoverflow.com/a/70499458
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound, .providesAppNotificationSettings]) { granted, error in
             if !granted {
                 self.logger.error("User did not authorize notifications.")
             }
@@ -103,6 +103,13 @@ extension DeliveryMechanismNotification: UNUserNotificationCenterDelegate {
         default:
             logger.error("Encountered unrecongized notification action: \(response.actionIdentifier)")
         }
+    }
+
+    // As of macOS Monterey 12.4, I don't believe this method is ever used. It
+    // appears to be iOS-specific. Doesn't hurt to declare intent in case a
+    // future version of macOS implements this system feature.
+    func userNotificationCenter(_ center: UNUserNotificationCenter, openSettingsFor notification: UNNotification?) {
+        openConfigurationApp()
     }
 }
 
