@@ -35,16 +35,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         // TODO: Handle errors in a sandboxed environment where the scdaemon path is not readable yet.
 
-        // For some reason .badge permissions are also required for .sound: https://stackoverflow.com/a/70499458
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
-            if !granted {
-                self.logger.error("User did not authorize notifications.")
-            }
-            if let error = error {
-                self.logger.error("Failed to request permission for notifications: \(error.localizedDescription)")
-            }
-        }
-
         // TODO: Validate that the executable at scdaemonPath is readlly scdaemon, and display an error notification if not.
 
         let arguments = Array(CommandLine.arguments[1...])

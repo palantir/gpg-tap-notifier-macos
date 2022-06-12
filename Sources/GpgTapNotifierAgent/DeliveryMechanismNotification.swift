@@ -8,10 +8,31 @@ import UserNotifications
 class DeliveryMechanismNotification {
     let logger = Logger()
     var currentNotificationIdentifier: String?
+    var didPerformSetup = false
+
+    private func performSetupIfNecessary() {
+        guard !didPerformSetup else {
+            return
+        }
+
+        // For some reason .badge permissions are also required for .sound: https://stackoverflow.com/a/70499458
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+            if !granted {
+                self.logger.error("User did not authorize notifications.")
+            }
+            if let error = error {
+                self.logger.error("Failed to request permission for notifications: \(error.localizedDescription)")
+            }
+        }
+
+        didPerformSetup = true
+    }
 }
 
 extension DeliveryMechanismNotification: DeliveryMechanism {
     func present(title: String, body: String) {
+        performSetupIfNecessary()
+
         let content = UNMutableNotificationContent()
 
         content.title = title
