@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46377DF9285596440075A92E /* OpenConfigurationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46377DF8285596440075A92E /* OpenConfigurationApp.swift */; };
 		46476798284EFC9900A7E6C9 /* DeliveryMechanism.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46476797284EFC9900A7E6C9 /* DeliveryMechanism.swift */; };
 		4647679A284EFD2D00A7E6C9 /* DeliveryMechanismNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46476799284EFD2D00A7E6C9 /* DeliveryMechanismNotification.swift */; };
 		4647679C284F009E00A7E6C9 /* DeliveryMechanismAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4647679B284F009E00A7E6C9 /* DeliveryMechanismAlert.swift */; };
@@ -66,6 +67,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		46377DF8285596440075A92E /* OpenConfigurationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenConfigurationApp.swift; sourceTree = "<group>"; };
 		46476797284EFC9900A7E6C9 /* DeliveryMechanism.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryMechanism.swift; sourceTree = "<group>"; };
 		46476799284EFD2D00A7E6C9 /* DeliveryMechanismNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryMechanismNotification.swift; sourceTree = "<group>"; };
 		4647679B284F009E00A7E6C9 /* DeliveryMechanismAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryMechanismAlert.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				4647679B284F009E00A7E6C9 /* DeliveryMechanismAlert.swift */,
 				46476799284EFD2D00A7E6C9 /* DeliveryMechanismNotification.swift */,
 				8345C08C27EA37A3000413FF /* ReadCompletionUtils.swift */,
+				46377DF8285596440075A92E /* OpenConfigurationApp.swift */,
 				837F1E1027CADB3500C249DA /* Assets.xcassets */,
 				837F1E1527CADB3500C249DA /* GpgTapNotifierAgent.entitlements */,
 				837F1E1227CADB3500C249DA /* Preview Content */,
@@ -434,6 +437,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46377DF9285596440075A92E /* OpenConfigurationApp.swift in Sources */,
 				4647679C284F009E00A7E6C9 /* DeliveryMechanismAlert.swift in Sources */,
 				837F1E1B27CADF1F00C249DA /* main.swift in Sources */,
 				837F1E0D27CADB3300C249DA /* GpgTapNotifierAgentApp.swift in Sources */,
