@@ -35,7 +35,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         // TODO: Handle errors in a sandboxed environment where the scdaemon path is not readable yet.
 
-        // TODO: Is there a better way to request notification permissions?
         // For some reason .badge permissions are also required for .sound: https://stackoverflow.com/a/70499458
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
             if !granted {
