@@ -50,25 +50,28 @@ struct ContentView: View {
                 scdaemonPath: self.scdaemonPath)
                 .padding(.vertical)
 
-            DeliveryMechanismChooserView()
-                .padding(.vertical)
-
-            Divider()
-
-            FilePathsView(
-                gpgAgentConfPath: $gpgAgentConfPath,
-                gpgconfPath: $gpgconfPath,
-                scdaemonPath: $scdaemonPath)
-                .padding(.vertical)
-
-            HStack {
-                Spacer()
-                Button("Configure Notification") {
-                    self.showingNotificationMessageEditSheet = true
+            TabView {
+                VStack {
+                    DeliveryMechanismChooserView()
+                        .padding()
+                    Spacer()
                 }
-                .sheet(isPresented: $showingNotificationMessageEditSheet) {
-                    NotificationMessageEditView(dismiss: { self.showingNotificationMessageEditSheet = false })
+                .tabItem { Text("Delivery") }
+
+                VStack {
+                    FilePathsView(
+                        gpgAgentConfPath: $gpgAgentConfPath,
+                        gpgconfPath: $gpgconfPath,
+                        scdaemonPath: $scdaemonPath)
+                    Spacer()
                 }
+                .tabItem { Text("File Paths") }
+
+                VStack {
+                    NotificationMessageEditView()
+                    Spacer()
+                }
+                .tabItem { Text("Message Text") }
             }
         }.padding(40)
     }

@@ -14,9 +14,6 @@ struct NotificationMessageEditView: View {
     @AppStorage(AppUserDefaults.notificationTimeoutSecs.key, store: AppUserDefaults.suite)
     var notificationTimeout = AppUserDefaults.notificationTimeoutSecs.getDefault()
 
-    // TODO: Use @Environment(\.dismiss) on macOS 12.0
-    var dismiss: () -> ()
-
     // TODO: Pull from a static list of quotes.
     // TODO: Add a setting to make this random each time.
     static let sampleReminders = [
@@ -56,10 +53,6 @@ struct NotificationMessageEditView: View {
                     self.notificationBody = AppUserDefaults.notificationBody.getDefault()
                 }
                 Spacer()
-                // TODO: Put default focus on this button.
-                Button("Done") {
-                    self.dismiss()
-                }
             }
             .padding(.top)
         }
@@ -70,6 +63,6 @@ struct NotificationMessageEditView: View {
 
 struct NotificationMessageEditView_Previews: PreviewProvider {
     static var previews: some View {
-        NotificationMessageEditView(dismiss: {})
+        NotificationMessageEditView()
     }
 }
