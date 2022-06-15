@@ -31,7 +31,7 @@ struct ContentView: View {
                 .fixedSize()
             Text("This application provides reminders to tap your security device (e.g. YubiKey) by wrapping communication between gpg-agent and scdaemon. This mechanism works well in most cases, but you may see false positives from time to time.")
                 .font(.body)
-                .lineLimit(3)
+                .lineLimit(4)
                 .padding(.vertical)
                 .fixedSize(horizontal: false, vertical: true)
 
