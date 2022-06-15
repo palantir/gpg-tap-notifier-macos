@@ -11,10 +11,29 @@ struct DeliveryMechanismChooserView: View {
     // TODO: Describe the various delivery mechanisms.
     // TODO: Provide a way to test a notification.
     var body: some View {
-        VStack {
-            Picker("Delivery Mechanism", selection: $reminderDeliveryMechanism) {
-                ForEach(ReminderDeliveryMechanismOption.allCases) { Text($0.description) }
-            }.pickerStyle(.segmented)
+        VStack(alignment: .leading, spacing: 20) {
+            HStack {
+                Text("Delivery mechanism:")
+                Spacer()
+
+                ForEach(ReminderDeliveryMechanismOption.allCases) { option in
+                    DeliveryMechanismChoiceView(option, isSelected: option == reminderDeliveryMechanism) {
+                        reminderDeliveryMechanism = option
+                    }
+                }
+            }
+
+            Text(optionExplanation)
+                .foregroundColor(.secondary)
+                .lineLimit(3)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+
+    var optionExplanation: String {
+        switch reminderDeliveryMechanism {
+        case .notificationCenter: return "If you're not seeing notifications, please make sure GPG Tap Notifier Agent is allowed to send notification in System Preferences."
+        case .alert: return "Tap reminders will be shown as a centered alert similar to other macOS security prompts."
         }
     }
 }

@@ -141,7 +141,7 @@ struct GpgAgentConfSectionView: View {
             return "Failed to read gpg-agent.conf at the path selected below."
         case .loaded(_), .reloading(_):
             return self.conf.isProxyInstalled
-                ? "The proxy is enabled. This app can be safely closed. If you're not seeing notifications, please make sure GPG Tap Notifier Agent is allowed to send notifications in macOS System Preferences."
+                ? "The proxy is enabled. This app can be safely closed."
                 : "Click the Enable button to edit gpg-agent.conf and restart gpg-agent. Otherwise you may safely delete this .app if you no longer wish to receive tap notifications."
         }
     }
