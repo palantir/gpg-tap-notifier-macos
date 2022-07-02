@@ -73,7 +73,7 @@ struct ContentView: View {
                 }
                 .tabItem { Text("Message Text") }
             }
-        }.padding(40)
+        }.padding(35)
     }
 }
 
