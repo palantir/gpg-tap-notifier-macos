@@ -15,13 +15,6 @@ struct DeliveryMechanismChoiceView: View {
         self.action = action
     }
 
-    var imageName: String {
-        switch option {
-        case .notificationCenter: return "NotificationCenter"
-        case .alert: return "SystemAlert"
-        }
-    }
-
     var title: String {
         switch option {
         case .notificationCenter: return "Notification"
@@ -32,8 +25,7 @@ struct DeliveryMechanismChoiceView: View {
     var body: some View {
         Button (action: action) {
             VStack {
-                Image(imageName)
-                    .cornerRadius(3)
+                DeliveryMechanismChoicePreviewView(option: option)
                 Text(title)
                     .padding(.horizontal, 9)
                     .padding(.vertical, 2)
@@ -49,5 +41,6 @@ struct DeliveryMechanismChoiceView_Previews: PreviewProvider {
         DeliveryMechanismChoiceView(
             .notificationCenter,
             isSelected: true) {}
+        .padding()
     }
 }
