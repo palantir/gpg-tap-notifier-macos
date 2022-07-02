@@ -27,6 +27,11 @@ struct DeliveryMechanismChooserView: View {
                 .foregroundColor(.secondary)
                 .lineLimit(3)
                 .fixedSize(horizontal: false, vertical: true)
+
+            HStack {
+                Spacer()
+                DeliveryMechanismTestButtonView()
+            }
         }
     }
 
