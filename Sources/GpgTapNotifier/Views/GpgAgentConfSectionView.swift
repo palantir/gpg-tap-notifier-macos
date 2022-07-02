@@ -80,6 +80,7 @@ struct GpgAgentConfSectionView: View {
                 Text("Restart gpg-agent when enabling or disabling")
             }
             .padding(.top)
+            .fixedSize()
         }
         .onAppear {
             // Refactor this to .task from .onAppear when macOS 11.x support
