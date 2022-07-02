@@ -12,7 +12,7 @@ struct DeliveryMechanismChoicePreviewView: View {
             // Background
             Rectangle()
                 .size(width: 100, height: 56)
-                .fill(Color.gray)
+                .fill(Color.gray.opacity(0.5))
 
             // Menubar
             Rectangle()
@@ -36,7 +36,7 @@ struct DeliveryMechanismChoicePreviewView: View {
             // Background
             Rectangle()
                 .size(width: 100, height: 56)
-                .fill(Color.gray)
+                .fill(Color.gray.opacity(0.5))
 
             // Menubar
             Rectangle()
