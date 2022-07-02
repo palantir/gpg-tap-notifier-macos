@@ -59,17 +59,15 @@ struct GpgAgentConfSectionView: View {
 
                 Spacer()
 
-                VStack(alignment: .trailing) {
-                    Toggle("Enabled", isOn: self.$isEnabledToggleValue)
-                        .toggleStyle(.switch)
-                        .fixedSize()
-                        .disabled(self.isRestartingGpgAgent || self.isNextEnabledToggleUpdateBackgroundRefresh)
-                        .onChange(of: self.isEnabledToggleValue) { nextIsEnabled in
-                            Task {
-                                try await onToggleChange(nextIsEnabled)
-                            }
+                Toggle("Enabled", isOn: self.$isEnabledToggleValue)
+                    .toggleStyle(.switch)
+                    .fixedSize()
+                    .disabled(self.isRestartingGpgAgent || self.isNextEnabledToggleUpdateBackgroundRefresh)
+                    .onChange(of: self.isEnabledToggleValue) { nextIsEnabled in
+                        Task {
+                            try await onToggleChange(nextIsEnabled)
                         }
-                }
+                    }
             }
 
             Text(self.statusDescription ?? "")
