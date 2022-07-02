@@ -49,11 +49,7 @@ struct GpgAgentConfSectionView: View {
                         .fill(self.getStatusColor())
                         .frame(width: 10, height: 10)
                     Text("GPG Agent Configuration: \(self.getStatusText())").bold()
-                    ProgressView()
-                        .scaleEffect(x: 0.5, y: 0.5, anchor: .center)
-                        .frame(width: 16, height: 16)
-                        .opacity(self.isSpinnerShown ? 1 : 0)
-                        .animation(.easeIn, value: self.isSpinnerShown)
+                    ProgressViewLoadingGpgConf(isSpinnerShown: isSpinnerShown)
                 }
                 .fixedSize()
 
