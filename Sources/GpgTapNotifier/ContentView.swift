@@ -14,8 +14,6 @@ struct ContentView: View {
     @AppStorage(AppUserDefaults.customHelpMessage.key, store: AppUserDefaults.suite)
     private var customHelpMessage: String?
 
-    @State private var showingNotificationMessageEditSheet = false
-    
     var customHelpMessageText: Text {
         if #available(macOS 12, *) {
             return Text(try! AttributedString(markdown: .init(customHelpMessage ?? "")))
