@@ -9,11 +9,25 @@ protocol DeliveryMechanism {
     /// Called when scdaemon's response exceeds the configured timeout. The
     /// dismiss function is not guaranteed to be called before this function is
     /// called again.
-    mutating func present(title: String, body: String)
+    mutating func present(title: String, body: String) async -> PresentStopReason
 
     /// Called on any scdaemon response. The present function is not guaranteed
     /// to be called before this function. The DeliveryMechanism implementation
     /// should store internal state on whether or not a true dismissal is
     /// necessary.
     mutating func dismiss()
+}
+
+enum PresentStopReason {
+    /// The reminder was removed from the screen during normal operation. (i.e.
+    /// The scdaemon process began responding.)
+    case dismissed
+    /// The user clicked on the notification (cause it to be cleared) or clicked
+    /// the alert dismiss button.
+    case userManuallyCleared
+    /// There's already a reminder being displayed.
+    case existingReminderDisplayed
+    /// The current reminder was replaced with a new one.
+    case reminderReplaced
+    case deliveryError(Error)
 }

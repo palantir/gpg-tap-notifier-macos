@@ -143,7 +143,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @MainActor
-    private func presentReminder() {
+    private func presentReminder() async {
         // Intentionally reading from UserDefaults on every notification rather than
         // setting up a Key-Value Observer (KVO). The KVO adds implementation complexity
         // and notifications aren't sent frequently enough to be worth caching.
@@ -151,7 +151,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let body = AppUserDefaults.suite?.string(forKey: AppUserDefaults.notificationBody.key) ?? AppUserDefaults.notificationBody.getDefault()
 
         var deliveryMechanism = autoReloadingDeliveryMechanism.get()
-        deliveryMechanism.present(title: title, body: body)
+        let _ = await deliveryMechanism.present(title: title, body: body)
     }
 
     @MainActor

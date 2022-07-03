@@ -7,8 +7,15 @@ import UserNotifications
 
 class DeliveryMechanismNotification: NSObject {
     let logger = Logger()
-    var currentNotificationIdentifier: String?
     var didPerformSetup = false
+
+    struct PresentingState {
+        let continuation: CheckedContinuation<PresentStopReason, Never>
+        let currentNotificationIdentifier: String
+    }
+
+    /// Non-nil if a notification is currently displayed.
+    private var presentingState: PresentingState? = nil
 
     private func getNotificationCategories() -> Set<UNNotificationCategory> {
         let openConfigurationAction = UNNotificationAction(
@@ -53,17 +60,18 @@ class DeliveryMechanismNotification: NSObject {
 }
 
 extension DeliveryMechanismNotification: DeliveryMechanism {
-    func present(title: String, body: String) {
+    func present(title: String, body: String) async -> PresentStopReason {
         performSetupIfNecessary()
 
-        if let currentNotificationIdentifier = self.currentNotificationIdentifier {
-            self.currentNotificationIdentifier = nil
+        if let presentingState = self.presentingState {
+            self.presentingState = nil
 
             // This shouldn't happen in practice, but if the present() function
             // is called multiple times without dismiss(), remove any existing
             // notifications and present a new one. It's not clear if this is the right
             // behavior, but it'll make any new reminders more prominent.
-            UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [currentNotificationIdentifier])
+            presentingState.continuation.resume(returning: .reminderReplaced)
+            UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [presentingState.currentNotificationIdentifier])
         }
 
         let content = UNMutableNotificationContent()
@@ -77,32 +85,41 @@ extension DeliveryMechanismNotification: DeliveryMechanism {
         content.sound = .default
 
         let currentNotificationIdentifier = UUID().uuidString
-        self.currentNotificationIdentifier = currentNotificationIdentifier
         let request = UNNotificationRequest(identifier: currentNotificationIdentifier, content: content, trigger: nil)
 
-        UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
-                self.logger.error("Failed to deliver notification: \(error.localizedDescription)")
+        return await withCheckedContinuation { (continuation: CheckedContinuation<PresentStopReason, Never>) in
+            let presentingState = PresentingState(continuation: continuation, currentNotificationIdentifier: currentNotificationIdentifier)
+            self.presentingState = presentingState
 
-                if self.currentNotificationIdentifier == currentNotificationIdentifier {
-                    self.currentNotificationIdentifier = nil
+            UNUserNotificationCenter.current().add(request) { error in
+                if let error = error {
+                    self.logger.error("Failed to deliver notification: \(error.localizedDescription)")
+
+                    presentingState.continuation.resume(returning: .deliveryError(error))
+                    if self.presentingState?.currentNotificationIdentifier == currentNotificationIdentifier {
+                        self.presentingState = nil
+                    }
                 }
             }
         }
     }
 
     func dismiss() {
-        guard let identifier = self.currentNotificationIdentifier else {
+        guard let presentingState = presentingState else {
             return
         }
+        self.presentingState = nil
 
-        self.currentNotificationIdentifier = nil
-        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [identifier])
+        presentingState.continuation.resume(returning: .dismissed)
+        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [presentingState.currentNotificationIdentifier])
     }
 }
 
 extension DeliveryMechanismNotification: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
+        self.presentingState?.continuation.resume(returning: .userManuallyCleared)
+        self.presentingState = nil
+
         switch response.actionIdentifier {
         case UNNotificationDefaultActionIdentifier:
             // No-op if the notification was simply clicked. Let's treat this as
