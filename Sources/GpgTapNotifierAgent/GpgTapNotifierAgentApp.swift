@@ -25,6 +25,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var autoReloadingDeliveryMechanism = AutoReloadingDeliveryMechanism()
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        let arguments = Array(CommandLine.arguments[1...])
+        if (arguments.contains("--gpg-tap-notifier-test-notification")) {
+            Task {
+                await self.conductReminderTest()
+            }
+            return
+        }
+
         // TODO: Create a security scoped bookmark for the scdaemon path and read so this agent works when sandboxed.
 
         // Intentionally not live reloading this value. Stopping scdaemon to spawn a new
@@ -37,7 +45,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         // TODO: Validate that the executable at scdaemonPath is readlly scdaemon, and display an error notification if not.
 
-        let arguments = Array(CommandLine.arguments[1...])
         let scdaemonProcess = setupScdaemon(scdaemonPath: scdaemonPath, arguments: arguments)
 
         logger.debug("Launching scdaemon: \(scdaemonPath.path) \(arguments.joined(separator: " "))")
@@ -140,6 +147,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         scdaemonStdErr.fileHandleForReading.readInBackgroundAndNotify()
 
         return scdaemon
+    }
+
+    @MainActor
+    private func conductReminderTest() async {
+        defer { NSApplication.shared.terminate(self) }
+
+        var deliveryMechanism = autoReloadingDeliveryMechanism.get()
+
+        let title = "Test Reminder"
+        let body = "This is a test reminder from GPG Tap Notifier."
+
+        // TODO: Check if there was an error and save it to UserDefaults for GUI to present.
+        let _ = await deliveryMechanism.present(title: title, body: body)
+
+        // Wait 50ms before exiting the application. Without this delay clicking
+        // on a notification to dismiss it intermittently caused macOS to show
+        // an alert with the message:
+        //
+        //   The application "GPG Tap Notifier Agent.app" is not open anymore.
+        //
+        // This is likely because the process exited before fully handling the
+        // UNNotificationResponse event.
+        try? await Task.sleep(nanoseconds: 50_000_000)
     }
 
     @MainActor
