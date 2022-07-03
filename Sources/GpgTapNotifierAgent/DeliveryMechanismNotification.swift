@@ -8,6 +8,7 @@ import UserNotifications
 class DeliveryMechanismNotification: NSObject {
     let logger = Logger()
     var didPerformSetup = false
+    var requestingNotificationAuthorizationTask: Task<(), Never>?
 
     struct PresentingState {
         let continuation: CheckedContinuation<PresentStopReason, Never>
@@ -48,22 +49,36 @@ class DeliveryMechanismNotification: NSObject {
         UNUserNotificationCenter.current().setNotificationCategories(getNotificationCategories())
         UNUserNotificationCenter.current().delegate = self
 
-        UNUserNotificationCenter.current().requestAuthorization(options: notificationOptions) { granted, error in
-            if !granted {
-                self.logger.error("User did not authorize notifications.")
-            }
-            if let error = error {
+        didPerformSetup = true
+    }
+
+    private func requestInitialNotificationAuthorization() async {
+        if let task = requestingNotificationAuthorizationTask {
+            return await task.value
+        }
+
+        let task = Task {
+            // Intentionally not re-throwing errors or signaling !granted status. This application is expected
+            // to continue attempting notification delivery. The user may have changed settings in System Preferences since this point.
+            do {
+                let granted = try await UNUserNotificationCenter.current().requestAuthorization(options: notificationOptions)
+                if !granted {
+                    self.logger.error("User did not authorize notifications.")
+                }
+            } catch {
                 self.logger.error("Failed to request permission for notifications: \(error.localizedDescription)")
             }
         }
+        self.requestingNotificationAuthorizationTask = task
 
-        didPerformSetup = true
+        return await task.value
     }
 }
 
 extension DeliveryMechanismNotification: DeliveryMechanism {
     func present(title: String, body: String) async -> PresentStopReason {
         performSetupIfNecessary()
+        await requestInitialNotificationAuthorization()
 
         if let presentingState = self.presentingState {
             self.presentingState = nil
