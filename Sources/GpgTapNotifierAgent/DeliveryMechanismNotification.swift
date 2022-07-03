@@ -56,6 +56,16 @@ extension DeliveryMechanismNotification: DeliveryMechanism {
     func present(title: String, body: String) {
         performSetupIfNecessary()
 
+        if let currentNotificationIdentifier = self.currentNotificationIdentifier {
+            self.currentNotificationIdentifier = nil
+
+            // This shouldn't happen in practice, but if the present() function
+            // is called multiple times without dismiss(), remove any existing
+            // notifications and present a new one. It's not clear if this is the right
+            // behavior, but it'll make any new reminders more prominent.
+            UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [currentNotificationIdentifier])
+        }
+
         let content = UNMutableNotificationContent()
 
         content.title = title
