@@ -28,6 +28,9 @@ class DeliveryMechanismNotification: NSObject {
         return [category]
     }
 
+    // For some reason .badge permissions are also required for .sound: https://stackoverflow.com/a/70499458
+    private let notificationOptions: UNAuthorizationOptions = [.alert, .badge, .sound, .providesAppNotificationSettings]
+
     private func performSetupIfNecessary() {
         guard !didPerformSetup else {
             return
@@ -45,8 +48,7 @@ class DeliveryMechanismNotification: NSObject {
         UNUserNotificationCenter.current().setNotificationCategories(getNotificationCategories())
         UNUserNotificationCenter.current().delegate = self
 
-        // For some reason .badge permissions are also required for .sound: https://stackoverflow.com/a/70499458
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound, .providesAppNotificationSettings]) { granted, error in
+        UNUserNotificationCenter.current().requestAuthorization(options: notificationOptions) { granted, error in
             if !granted {
                 self.logger.error("User did not authorize notifications.")
             }
