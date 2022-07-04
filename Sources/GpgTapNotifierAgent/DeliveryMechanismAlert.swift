@@ -50,12 +50,16 @@ extension DeliveryMechanismAlert: DeliveryMechanism {
         alertWindow.center()
 
         return await withCheckedContinuation { (continuation: CheckedContinuation<PresentStopReason, Never>) in
-            let presentingState = PresentingState(continuation: continuation, currentAlert: alert)
-            self.presentingState = presentingState
+            self.presentingState = PresentingState(continuation: continuation, currentAlert: alert)
 
             alert.beginSheetModal(for: alertWindow) { modalResponse in
-                self.presentingState = nil
-                presentingState.continuation.resume(returning: .userManuallyCleared)
+                // The beginSheetModal completionHandler callback here should
+                // always run when the modal closes. If the presentingState is
+                // already nil, the dismiss() method was likely just called.
+                if let presentingState = self.presentingState {
+                    self.presentingState = nil
+                    presentingState.continuation.resume(returning: .userManuallyCleared)
+                }
 
                 // Corresponds with the "Open Configuration" button since it was
                 // added second. What a strange API.
