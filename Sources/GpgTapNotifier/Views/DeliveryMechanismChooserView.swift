@@ -8,8 +8,6 @@ struct DeliveryMechanismChooserView: View {
     @AppStorage(AppUserDefaults.reminderDeliveryMechanism.key, store: AppUserDefaults.suite)
     var reminderDeliveryMechanism = AppUserDefaults.reminderDeliveryMechanism.getDefault()
 
-    // TODO: Describe the various delivery mechanisms.
-    // TODO: Provide a way to test a notification.
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             HStack {
