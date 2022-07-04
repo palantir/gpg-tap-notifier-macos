@@ -63,7 +63,7 @@ struct ContentView: View {
                         scdaemonPath: $scdaemonPath)
                     Spacer()
                 }
-                .tabItem { Text("File Paths") }
+                .tabItem { Text("GPG File Paths") }
 
                 VStack {
                     NotificationMessageEditView()
