@@ -4,21 +4,45 @@
 import Foundation
 
 class AgentTestNotificationViewModel: ObservableObject {
-    @Published var isRunning = false
-    @Published var lastError: Error?
+    @Published var state: TestState = .idle
 
+    enum TestState {
+        case idle
+        case running(Task<(), Never>)
+        case errored(Error)
+    }
+
+    var isRunning: Bool {
+        switch state {
+        case .running(_): return true
+        default: return false
+        }
+    }
+
+    var lastError: Error? {
+        switch state {
+        case .idle, .running(_): return nil
+        case .errored(let err): return err
+        }
+    }
+
+    @MainActor
     func test() {
-        Task {
-            self.isRunning = true
-            self.lastError = nil
-            defer { self.isRunning = false }
+        switch state {
+        case .running(_): return
+        case .idle, .errored(_): break
+        }
 
+        let runTask = Task {
             do {
                 try await testNotification()
+                state = .idle
             } catch {
-                self.lastError = error
+                state = .errored(error)
             }
         }
+
+        state = .running(runTask)
     }
 }
 
