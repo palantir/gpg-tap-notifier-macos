@@ -66,7 +66,7 @@ struct ContentView: View {
                 .tabItem { Text("GPG File Paths") }
 
                 VStack {
-                    NotificationMessageEditView()
+                    ReminderTextEditView()
                     Spacer()
                 }
                 .tabItem { Text("Message Text") }

@@ -4,20 +4,20 @@
 import SwiftUI
 import GpgTapNotifierUserDefaults
 
-struct NotificationMessageEditView: View {
-    @AppStorage(AppUserDefaults.notificationTitle.key, store: AppUserDefaults.suite)
-    var notificationTitle = AppUserDefaults.notificationTitle.getDefault()
+struct ReminderTextEditView: View {
+    @AppStorage(AppUserDefaults.reminderTitle.key, store: AppUserDefaults.suite)
+    var reminderTitle = AppUserDefaults.reminderTitle.getDefault()
 
-    @AppStorage(AppUserDefaults.notificationBody.key, store: AppUserDefaults.suite)
-    var notificationBody = AppUserDefaults.notificationBody.getDefault()
+    @AppStorage(AppUserDefaults.reminderBody.key, store: AppUserDefaults.suite)
+    var reminderBody = AppUserDefaults.reminderBody.getDefault()
 
-    @AppStorage(AppUserDefaults.notificationTimeoutSecs.key, store: AppUserDefaults.suite)
-    var notificationTimeout = AppUserDefaults.notificationTimeoutSecs.getDefault()
+    @AppStorage(AppUserDefaults.reminderTimeout.key, store: AppUserDefaults.suite)
+    var reminderTimeout = AppUserDefaults.reminderTimeout.getDefault()
 
     // TODO: Pull from a static list of quotes.
     // TODO: Add a setting to make this random each time.
     static let sampleReminders = [
-        (AppUserDefaults.notificationTitle.getDefault(), AppUserDefaults.notificationBody.getDefault()),
+        (AppUserDefaults.reminderTitle.getDefault(), AppUserDefaults.reminderBody.getDefault()),
         // From: https://www.hackingwithswift.com/example-code/system/how-to-set-local-alerts-using-unnotificationcenter
         ("Late wake up call", "The early bird catches the worm, but the second mouse gets the cheese."),
     ]
@@ -26,15 +26,15 @@ struct NotificationMessageEditView: View {
         VStack {
             HStack {
                 VStack {
-                    TextField("Title", text: $notificationTitle).font(.body)
-                    TextEditor(text: $notificationBody)
+                    TextField("Title", text: $reminderTitle).font(.body)
+                    TextEditor(text: $reminderBody)
                         .font(.body)
                         .frame(height: 50)
                 }
             }
 
-            Slider(value: $notificationTimeout, in: 1...10, step: 1.0) {
-                Text("Notification Timeout (s)")
+            Slider(value: $reminderTimeout, in: 1...10, step: 1.0) {
+                Text("Reminder Timeout (s)")
                     .padding(.trailing)
             } minimumValueLabel: {
                 Text("1s")
@@ -45,12 +45,12 @@ struct NotificationMessageEditView: View {
             HStack {
                 Button("Randomize") {
                     let nextMessage = Self.sampleReminders.randomElement()!
-                    self.notificationTitle = nextMessage.0
-                    self.notificationBody = nextMessage.1
+                    self.reminderTitle = nextMessage.0
+                    self.reminderBody = nextMessage.1
                 }
                 Button("Reset") {
-                    self.notificationTitle = AppUserDefaults.notificationTitle.getDefault()
-                    self.notificationBody = AppUserDefaults.notificationBody.getDefault()
+                    self.reminderTitle = AppUserDefaults.reminderTitle.getDefault()
+                    self.reminderBody = AppUserDefaults.reminderBody.getDefault()
                 }
                 Spacer()
             }
@@ -61,8 +61,8 @@ struct NotificationMessageEditView: View {
     }
 }
 
-struct NotificationMessageEditView_Previews: PreviewProvider {
+struct ReminderTextEditView_Previews: PreviewProvider {
     static var previews: some View {
-        NotificationMessageEditView()
+        ReminderTextEditView()
     }
 }

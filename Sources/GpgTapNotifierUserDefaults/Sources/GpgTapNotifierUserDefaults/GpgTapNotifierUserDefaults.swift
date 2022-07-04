@@ -35,15 +35,15 @@ public struct AppUserDefaults  {
         key: "reminderDeliveryMechanism",
         getDefault: { ReminderDeliveryMechanismOption.notificationCenter })
 
-    public static let notificationTimeoutSecs = UserDefaultsConfig(
+    public static let reminderTimeout = UserDefaultsConfig(
         key: "notificationTimeoutSecs",
         getDefault: { 1.0 })
 
-    public static let notificationTitle = UserDefaultsConfig(
+    public static let reminderTitle = UserDefaultsConfig(
         key: "notificationTitle",
         getDefault: { "YubiKey Reminder" })
 
-    public static let notificationBody = UserDefaultsConfig(
+    public static let reminderBody = UserDefaultsConfig(
         key: "notificationBody",
         getDefault: { "Is your YubiKey blinking? You may need to touch its metal contact." })
 

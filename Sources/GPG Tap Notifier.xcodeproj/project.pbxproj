@@ -37,7 +37,7 @@
 		837F1E1427CADB3500C249DA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 837F1E1327CADB3500C249DA /* Preview Assets.xcassets */; };
 		837F1E1B27CADF1F00C249DA /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837F1E1A27CADF1F00C249DA /* main.swift */; };
 		837FD81A27E6AB5000CDD61B /* FilePathItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837FD81927E6AB5000CDD61B /* FilePathItemView.swift */; };
-		837FD81C27E6BA3500CDD61B /* NotificationMessageEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837FD81B27E6BA3500CDD61B /* NotificationMessageEditView.swift */; };
+		837FD81C27E6BA3500CDD61B /* ReminderTextEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837FD81B27E6BA3500CDD61B /* ReminderTextEditView.swift */; };
 		83A054B928088AD90033CD5E /* GpgTapNotifier.help in Resources */ = {isa = PBXBuildFile; fileRef = 83A054B828088AD90033CD5E /* GpgTapNotifier.help */; };
 		83C17BC12820336700EC59BB /* GPG Tap Notifier Installer in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8334A631282031D000820038 /* GPG Tap Notifier Installer */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		83C17BC42820349F00EC59BB /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 83C17BC32820349F00EC59BB /* ArgumentParser */; };
@@ -106,7 +106,7 @@
 		837F1E1927CADD7500C249DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		837F1E1A27CADF1F00C249DA /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		837FD81927E6AB5000CDD61B /* FilePathItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePathItemView.swift; sourceTree = "<group>"; };
-		837FD81B27E6BA3500CDD61B /* NotificationMessageEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationMessageEditView.swift; sourceTree = "<group>"; };
+		837FD81B27E6BA3500CDD61B /* ReminderTextEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderTextEditView.swift; sourceTree = "<group>"; };
 		83A054B828088AD90033CD5E /* GpgTapNotifier.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = GpgTapNotifier.help; sourceTree = "<group>"; };
 		83C17BC6282048B500EC59BB /* GpgTapNotifierInstaller.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = GpgTapNotifierInstaller.entitlements; sourceTree = "<group>"; };
 		83C2E71A27E4464900FB7743 /* FilePathsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePathsView.swift; sourceTree = "<group>"; };
@@ -161,12 +161,12 @@
 				831CC89E27D07884002D8A6D /* GpgAgentConfSectionView.swift */,
 				83C2E71A27E4464900FB7743 /* FilePathsView.swift */,
 				837FD81927E6AB5000CDD61B /* FilePathItemView.swift */,
-				837FD81B27E6BA3500CDD61B /* NotificationMessageEditView.swift */,
 				4693B648285535C500FCD249 /* DeliveryMechanismChooserView.swift */,
 				46A442562856FA980012CE9A /* DeliveryMechanismChoiceView.swift */,
 				46F28612286FFD440071C8C1 /* DeliveryMechanismChoicePreviewView.swift */,
 				464CDAF62870EFE300EAF1AD /* DeliveryMechanismTestButtonView.swift */,
 				464CDAF82870F3E800EAF1AD /* ProgressViewLoadingGpgConf.swift */,
+				837FD81B27E6BA3500CDD61B /* ReminderTextEditView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -449,7 +449,7 @@
 				831CC89F27D07884002D8A6D /* GpgAgentConfSectionView.swift in Sources */,
 				83C2E71B27E4464900FB7743 /* FilePathsView.swift in Sources */,
 				837F1DF827CADB1F00C249DA /* GpgTapNotifierApp.swift in Sources */,
-				837FD81C27E6BA3500CDD61B /* NotificationMessageEditView.swift in Sources */,
+				837FD81C27E6BA3500CDD61B /* ReminderTextEditView.swift in Sources */,
 				464CDAF72870EFE300EAF1AD /* DeliveryMechanismTestButtonView.swift in Sources */,
 				835F7A9327DE87D30046D482 /* AsyncUtils.swift in Sources */,
 				46A442572856FA980012CE9A /* DeliveryMechanismChoiceView.swift in Sources */,

@@ -137,7 +137,7 @@ struct GpgAgentConfSectionView: View {
         case .loaded(_), .reloading(_):
             return self.conf.isProxyInstalled
                 ? "The proxy is enabled. This app can be safely closed."
-                : "Click the Enable button to edit gpg-agent.conf and restart gpg-agent. Otherwise you may safely delete this .app if you no longer wish to receive tap notifications."
+                : "Click the Enable button to edit gpg-agent.conf and restart gpg-agent. Otherwise you may safely delete this .app if you no longer wish to receive tap reminders."
         }
     }
 

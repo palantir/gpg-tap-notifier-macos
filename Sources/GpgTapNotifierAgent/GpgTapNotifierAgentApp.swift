@@ -61,8 +61,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private func setupScdaemon(scdaemonPath: URL, arguments: [String]) -> Process {
         // The .double method defaults to 0 if this key hasn't been configured
         // yet. Check for 0 and set it to our default constant value.
-        let notificationTimeoutSetting = AppUserDefaults.suite?.double(forKey: AppUserDefaults.notificationTimeoutSecs.key) ?? 0
-        let notificationTimeoutSecs = notificationTimeoutSetting == 0 ? AppUserDefaults.notificationTimeoutSecs.getDefault() : notificationTimeoutSetting
+        let reminderTimeoutSetting = AppUserDefaults.suite?.double(forKey: AppUserDefaults.reminderTimeout.key) ?? 0
+        let reminderTimeoutSecs = reminderTimeoutSetting == 0 ? AppUserDefaults.reminderTimeout.getDefault() : reminderTimeoutSetting
 
         let scdaemonStdIn = Pipe()
         let scdaemonStdOut = Pipe()
@@ -83,7 +83,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             scdaemon.terminate()
         }
 
-        var notificationTask: Task<(), Error>? = nil
+        var presentReminderTask: Task<(), Error>? = nil
 
         // On macOS 12, FileHandle provides an async sequence for reading input
         // data. Unfortunately we have to support macOS 11. The logic below can
@@ -94,7 +94,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             // sends multiple messages in a row. During testing, this seems to
             // result in less false positives while not creating any true
             // negatives.
-            notificationTask?.cancel()
+            presentReminderTask?.cancel()
 
             let data = try! readCompletionResult(notification.userInfo!).get()
 
@@ -111,9 +111,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
             FileHandle.standardInput.readInBackgroundAndNotify()
 
-            notificationTask = Task {
+            presentReminderTask = Task {
                 do {
-                    try await Task.sleep(nanoseconds: UInt64(notificationTimeoutSecs * 1_000_000_000))
+                    try await Task.sleep(nanoseconds: UInt64(reminderTimeoutSecs * 1_000_000_000))
                 } catch is CancellationError {
                     return
                 }
@@ -123,7 +123,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         NotificationCenter.default.addObserver(forName: FileHandle.readCompletionNotification, object: scdaemonStdOut.fileHandleForReading, queue: .main) { notification in
-            notificationTask?.cancel()
+            presentReminderTask?.cancel()
             Task { await self.dismissReminder() }
 
             let data = try! readCompletionResult(notification.userInfo!).get()
@@ -133,7 +133,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         NotificationCenter.default.addObserver(forName: FileHandle.readCompletionNotification, object: scdaemonStdErr.fileHandleForReading, queue: .main) { notification in
-            notificationTask?.cancel()
+            presentReminderTask?.cancel()
             Task { await self.dismissReminder() }
 
             let data = try! readCompletionResult(notification.userInfo!).get()
@@ -174,11 +174,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     @MainActor
     private func presentReminder() async {
-        // Intentionally reading from UserDefaults on every notification rather than
-        // setting up a Key-Value Observer (KVO). The KVO adds implementation complexity
-        // and notifications aren't sent frequently enough to be worth caching.
-        let title = AppUserDefaults.suite?.string(forKey: AppUserDefaults.notificationTitle.key) ?? AppUserDefaults.notificationTitle.getDefault()
-        let body = AppUserDefaults.suite?.string(forKey: AppUserDefaults.notificationBody.key) ?? AppUserDefaults.notificationBody.getDefault()
+        // Intentionally reading from UserDefaults on every reminder rather than
+        // setting up a Key-Value Observer (KVO). The KVO adds implementation
+        // complexity and reminder aren't sent frequently enough to be worth
+        // caching.
+        let title = AppUserDefaults.suite?.string(forKey: AppUserDefaults.reminderTitle.key) ?? AppUserDefaults.reminderTitle.getDefault()
+        let body = AppUserDefaults.suite?.string(forKey: AppUserDefaults.reminderBody.key) ?? AppUserDefaults.reminderBody.getDefault()
 
         var deliveryMechanism = autoReloadingDeliveryMechanism.get()
         let _ = await deliveryMechanism.present(title: title, body: body)
