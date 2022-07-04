@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		46377DF9285596440075A92E /* OpenConfigurationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46377DF8285596440075A92E /* OpenConfigurationApp.swift */; };
+		46410EC32872484400043A1E /* AgentTestReminderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46410EC22872484400043A1E /* AgentTestReminderViewModel.swift */; };
 		46476798284EFC9900A7E6C9 /* DeliveryMechanism.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46476797284EFC9900A7E6C9 /* DeliveryMechanism.swift */; };
 		4647679A284EFD2D00A7E6C9 /* DeliveryMechanismNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46476799284EFD2D00A7E6C9 /* DeliveryMechanismNotification.swift */; };
 		4647679C284F009E00A7E6C9 /* DeliveryMechanismAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4647679B284F009E00A7E6C9 /* DeliveryMechanismAlert.swift */; };
@@ -72,6 +73,7 @@
 
 /* Begin PBXFileReference section */
 		46377DF8285596440075A92E /* OpenConfigurationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenConfigurationApp.swift; sourceTree = "<group>"; };
+		46410EC22872484400043A1E /* AgentTestReminderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgentTestReminderViewModel.swift; sourceTree = "<group>"; };
 		46476797284EFC9900A7E6C9 /* DeliveryMechanism.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryMechanism.swift; sourceTree = "<group>"; };
 		46476799284EFD2D00A7E6C9 /* DeliveryMechanismNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryMechanismNotification.swift; sourceTree = "<group>"; };
 		4647679B284F009E00A7E6C9 /* DeliveryMechanismAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryMechanismAlert.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				835F7A9427DEC8C60046D482 /* GpgAgentConfViewModel.swift */,
+				46410EC22872484400043A1E /* AgentTestReminderViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				83C2E71B27E4464900FB7743 /* FilePathsView.swift in Sources */,
 				837F1DF827CADB1F00C249DA /* GpgTapNotifierApp.swift in Sources */,
 				837FD81C27E6BA3500CDD61B /* ReminderTextEditView.swift in Sources */,
+				46410EC32872484400043A1E /* AgentTestReminderViewModel.swift in Sources */,
 				464CDAF72870EFE300EAF1AD /* DeliveryMechanismTestButtonView.swift in Sources */,
 				835F7A9327DE87D30046D482 /* AsyncUtils.swift in Sources */,
 				46A442572856FA980012CE9A /* DeliveryMechanismChoiceView.swift in Sources */,
