@@ -14,7 +14,7 @@ extension ReminderDeliveryMechanismOption: CustomStringConvertible {
     public var description: String {
         switch self {
         case .notificationCenter: return "Notification"
-        case .alert: return "System Alert"
+        case .alert: return "Alert HUD"
         }
     }
 }
