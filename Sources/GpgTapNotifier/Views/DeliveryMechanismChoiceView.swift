@@ -15,18 +15,11 @@ struct DeliveryMechanismChoiceView: View {
         self.action = action
     }
 
-    var title: String {
-        switch option {
-        case .notificationCenter: return "Notification"
-        case .alert: return "System Alert"
-        }
-    }
-
     var body: some View {
         Button (action: action) {
             VStack {
                 DeliveryMechanismChoicePreviewView(option: option)
-                Text(title)
+                Text(option.description)
                     .padding(.horizontal, 9)
                     .padding(.vertical, 2)
                     .foregroundColor(isSelected ? .white : .secondary)
