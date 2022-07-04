@@ -144,6 +144,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		46410EC42872B1D700043A1E /* DeliveryMechanism */ = {
+			isa = PBXGroup;
+			children = (
+				46979AEC28552F3E0026C4FD /* AutoReloadingDeliveryMechanism.swift */,
+				46476797284EFC9900A7E6C9 /* DeliveryMechanism.swift */,
+				4647679B284F009E00A7E6C9 /* DeliveryMechanismAlert.swift */,
+				46476799284EFD2D00A7E6C9 /* DeliveryMechanismNotification.swift */,
+			);
+			path = DeliveryMechanism;
+			sourceTree = "<group>";
+		};
 		831CC89D27D07851002D8A6D /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,13 +249,10 @@
 		837F1E0B27CADB3300C249DA /* GpgTapNotifierAgent */ = {
 			isa = PBXGroup;
 			children = (
+				46410EC42872B1D700043A1E /* DeliveryMechanism */,
 				837F1E1927CADD7500C249DA /* Info.plist */,
 				837F1E0C27CADB3300C249DA /* GpgTapNotifierAgentApp.swift */,
 				837F1E1A27CADF1F00C249DA /* main.swift */,
-				46979AEC28552F3E0026C4FD /* AutoReloadingDeliveryMechanism.swift */,
-				46476797284EFC9900A7E6C9 /* DeliveryMechanism.swift */,
-				4647679B284F009E00A7E6C9 /* DeliveryMechanismAlert.swift */,
-				46476799284EFD2D00A7E6C9 /* DeliveryMechanismNotification.swift */,
 				8345C08C27EA37A3000413FF /* ReadCompletionUtils.swift */,
 				46377DF8285596440075A92E /* OpenConfigurationApp.swift */,
 				837F1E1027CADB3500C249DA /* Assets.xcassets */,
