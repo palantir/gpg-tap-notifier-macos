@@ -25,7 +25,8 @@ class DeliveryMechanismNotification: NSObject {
         let category = UNNotificationCategory(
             identifier: NotificationCategories.tapReminder.rawValue,
             actions: [openConfigurationAction],
-            intentIdentifiers: [])
+            intentIdentifiers: [],
+            options: .customDismissAction)
         return [category]
     }
 
@@ -138,7 +139,7 @@ extension DeliveryMechanismNotification: UNUserNotificationCenterDelegate {
         self.presentingState = nil
 
         switch response.actionIdentifier {
-        case UNNotificationDefaultActionIdentifier:
+        case UNNotificationDefaultActionIdentifier, UNNotificationDismissActionIdentifier:
             // No-op if the notification was simply clicked. Let's treat this as
             // a dismiss operation.
             break
