@@ -33,7 +33,7 @@ public struct AppUserDefaults  {
 
     public static let reminderDeliveryMechanism = UserDefaultsConfig(
         key: "reminderDeliveryMechanism",
-        getDefault: { ReminderDeliveryMechanismOption.notificationCenter })
+        getDefault: { ReminderDeliveryMechanismOption.alert })
 
     public static let reminderTimeout = UserDefaultsConfig(
         key: "notificationTimeoutSecs",
