@@ -155,6 +155,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         var deliveryMechanism = autoReloadingDeliveryMechanism.get()
 
+        // This call may trigger a notification permission request. If that's
+        // the case, the agent should not close/exit before the user has acted
+        // on the request.
+        await deliveryMechanism.setupForReminderTest()
+
         // Intentionally starting the timeout after the "setupForReminderTest"
         // call above. This races the .present call below, which may finish
         // first.

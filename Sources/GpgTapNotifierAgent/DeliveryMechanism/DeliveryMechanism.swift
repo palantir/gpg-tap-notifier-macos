@@ -16,6 +16,16 @@ protocol DeliveryMechanism {
     /// should store internal state on whether or not a true dismissal is
     /// necessary.
     mutating func dismiss()
+
+    /// Any operations needed to finish before a test reminder can be presented.
+    mutating func setupForReminderTest() async
+}
+
+extension DeliveryMechanism {
+    // This is an optional protocol method that no-ops by default.
+    func setupForReminderTest() async {
+        return
+    }
 }
 
 enum PresentStopReason {

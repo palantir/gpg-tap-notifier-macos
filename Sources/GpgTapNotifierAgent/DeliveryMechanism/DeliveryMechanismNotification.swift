@@ -131,6 +131,11 @@ extension DeliveryMechanismNotification: DeliveryMechanism {
         presentingState.continuation.resume(returning: .dismissed)
         UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [presentingState.currentNotificationIdentifier])
     }
+
+    func setupForReminderTest() async {
+        performSetupIfNecessary()
+        await requestInitialNotificationAuthorization()
+    }
 }
 
 extension DeliveryMechanismNotification: UNUserNotificationCenterDelegate {
