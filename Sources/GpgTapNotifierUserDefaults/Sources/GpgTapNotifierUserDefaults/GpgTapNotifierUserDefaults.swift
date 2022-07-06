@@ -37,7 +37,7 @@ public struct AppUserDefaults  {
 
     public static let reminderTimeout = UserDefaultsConfig(
         key: "notificationTimeoutSecs",
-        getDefault: { 1.0 })
+        getDefault: { 0.5 })
 
     public static let reminderTitle = UserDefaultsConfig(
         key: "notificationTitle",
