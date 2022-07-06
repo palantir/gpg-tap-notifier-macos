@@ -155,11 +155,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         var deliveryMechanism = autoReloadingDeliveryMechanism.get()
 
-        let title = "Test Reminder"
-        let body = "This is a test reminder from GPG Tap Notifier."
+        // Intentionally starting the timeout after the "setupForReminderTest"
+        // call above. This races the .present call below, which may finish
+        // first.
+        let presentTimeoutTask = Task {
+            try? await Task.sleep(nanoseconds: 3_000_000_000)
+            deliveryMechanism.dismiss()
+        }
 
+        let title = "Test Reminder"
+        let body = "This is a test reminder from GPG Tap Notifier that will clear after 3 seconds."
         // TODO: Check if there was an error and save it to UserDefaults for GUI to present.
         let _ = await deliveryMechanism.present(title: title, body: body)
+
+        // If the user manually dismissed the reminder, this task may still be
+        // running. Cancel it for good measure.
+        presentTimeoutTask.cancel()
 
         // Wait 50ms before exiting the application. Without this delay clicking
         // on a notification to dismiss it intermittently caused macOS to show
