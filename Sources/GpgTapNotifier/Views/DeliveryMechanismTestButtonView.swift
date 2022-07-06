@@ -9,24 +9,32 @@ struct DeliveryMechanismTestButtonView: View {
 
     var body: some View {
         HStack {
-            Button(action: { isErrorPopoverShown = true }) {
-                Image(systemName: "exclamationmark.circle")
-            }
-            .disabled(agentRunner.lastError == nil)
-            .opacity(agentRunner.lastError == nil ? 0 : 1)
-            .buttonStyle(.plain)
-            .foregroundColor(.red)
-            .popover(isPresented: $isErrorPopoverShown) {
-                VStack(alignment: .leading, spacing: 10) {
-                    Text("The last notification test failed")
-                    Text(agentRunner.lastError.map { $0.localizedDescription } ?? "")
-                        .font(.caption)
+            if let lastError = agentRunner.lastError {
+                Button(action: { isErrorPopoverShown = true }) {
+                    Image(systemName: "exclamationmark.circle")
                 }
-                .padding(10)
-                .frame(width: 250)
+                .buttonStyle(.plain)
+                .foregroundColor(.red)
+                .onHover { isErrorPopoverShown = $0 }
+                .popover(isPresented: $isErrorPopoverShown) {
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text("The last notification test failed")
+                        Text(lastError.localizedDescription)
+                            .font(.caption)
+                    }
+                    .padding(10)
+                    .frame(minWidth: 200, maxWidth: 250)
+                }
             }
 
-            Button(action: agentRunner.test) {
+            if (agentRunner.isRunning) {
+                Button(action: agentRunner.cancel) {
+                    Image(systemName: "x.circle")
+                }
+                .buttonStyle(.plain)
+            }
+
+            Button(action: { agentRunner.test() }) {
                 Text("Test Notification")
             }
             .disabled(agentRunner.isRunning)

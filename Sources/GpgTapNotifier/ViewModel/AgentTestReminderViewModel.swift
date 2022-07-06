@@ -44,6 +44,13 @@ class AgentTestNotificationViewModel: ObservableObject {
 
         state = .running(runTask)
     }
+
+    func cancel() {
+        switch state {
+        case .idle, .errored(_): break
+        case .running(let runTask): runTask.cancel()
+        }
+    }
 }
 
 func testNotification() async throws {
