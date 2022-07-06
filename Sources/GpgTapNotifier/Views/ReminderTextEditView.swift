@@ -33,11 +33,12 @@ struct ReminderTextEditView: View {
                 }
             }
 
-            Slider(value: $reminderTimeout, in: 1...10, step: 1.0) {
-                Text("Reminder Timeout (s)")
+            Slider(value: $reminderTimeout, in: 0.5...10, step: 0.5) {
+                Text("Reminder Timeout: \(reminderTimeout, specifier: "%.1f")s")
                     .padding(.trailing)
+                    .fixedSize()
             } minimumValueLabel: {
-                Text("1s")
+                Text("0.5s")
             } maximumValueLabel: {
                 Text("10s")
             }
@@ -57,7 +58,7 @@ struct ReminderTextEditView: View {
             .padding(.top)
         }
         .padding(.all)
-        .frame(width: 400)
+        .frame(width: 425)
     }
 }
 
