@@ -15,7 +15,6 @@ struct ReminderTextEditView: View {
     var reminderTimeout = AppUserDefaults.reminderTimeout.getDefault()
 
     // TODO: Pull from a static list of quotes.
-    // TODO: Add a setting to make this random each time.
     static let sampleReminders = [
         (AppUserDefaults.reminderTitle.getDefault(), AppUserDefaults.reminderBody.getDefault()),
         // From: https://www.hackingwithswift.com/example-code/system/how-to-set-local-alerts-using-unnotificationcenter
