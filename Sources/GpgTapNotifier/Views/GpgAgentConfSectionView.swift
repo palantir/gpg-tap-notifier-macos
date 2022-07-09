@@ -132,8 +132,8 @@ struct GpgAgentConfSectionView: View {
             return nil
         case .missing:
             return "The gpg-agent.conf file wasn't found at the path selected below."
-        case .failed:
-            return "Failed to read gpg-agent.conf at the path selected below."
+        case .failed(let error):
+            return "Failed to read gpg-agent.conf at the path selected below. \(error.localizedDescription)"
         case .loaded(_), .reloading(_):
             return self.conf.isProxyInstalled
                 ? "The proxy is enabled. This app can be safely closed."

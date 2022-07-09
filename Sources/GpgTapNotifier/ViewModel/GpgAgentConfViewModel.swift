@@ -80,7 +80,7 @@ extension GpgAgentConfViewModel: NSFilePresenter {
 enum GpgAgentConfAsync {
     case loading
     case missing
-    case failed
+    case failed(Error)
     case reloading(GpgAgentConfModel)
     case loaded(GpgAgentConfModel)
 
@@ -89,8 +89,7 @@ enum GpgAgentConfAsync {
             let loaded = try await GpgAgentConfModel.load(url)
             return GpgAgentConfAsync.loaded(loaded)
         } catch {
-            // TODO: Propagate the error here
-            return GpgAgentConfAsync.failed
+            return GpgAgentConfAsync.failed(error)
         }
     }
 }
