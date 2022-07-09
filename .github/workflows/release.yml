@@ -35,5 +35,5 @@ jobs:
           files: "${{ steps.download_dmg_artifact.outputs.download-path }}/${{ needs.build.outputs.dmg_artifact_name }}"
           append_body: true
           body: |
-            ---
-            Release artifacts generated from [GitHub actions](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}).
+            ## Build
+            Release artifacts generated from GitHub actions: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
