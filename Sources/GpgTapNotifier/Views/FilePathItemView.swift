@@ -40,7 +40,7 @@ struct FilePathItemView: View {
 
         let response = openPanel.runModal()
 
-        // TODO: Is it possible for openPanel.url to be nil after the response is .OK?
+        // Assuming it's not possible for openPanel.url to be nil after the response is .OK
         if response == .OK, let selectedUrl = openPanel.url {
             self.path = selectedUrl
         }
