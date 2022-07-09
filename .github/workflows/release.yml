@@ -27,12 +27,19 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: ${{ needs.build.outputs.dmg_artifact_name }}
+      - name: Download .zip
+        id: download_zip_artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ needs.build.outputs.zip_artifact_name }}
       - name: Upload release artifact
         # Pinning to https://github.com/softprops/action-gh-release/commit/fe9a9bd3295828558c7a3c004f23f3bf77d155b2
         # until a new release is published.
         uses: softprops/action-gh-release@fe9a9bd3295828558c7a3c004f23f3bf77d155b2
         with:
-          files: "${{ steps.download_dmg_artifact.outputs.download-path }}/${{ needs.build.outputs.dmg_artifact_name }}"
+          files: |
+            ${{ steps.download_dmg_artifact.outputs.download-path }}/${{ needs.build.outputs.dmg_artifact_name }}
+            ${{ steps.download_zip_artifact.outputs.download-path }}/${{ needs.build.outputs.zip_artifact_name }}
           append_body: true
           body: |
             ## Build

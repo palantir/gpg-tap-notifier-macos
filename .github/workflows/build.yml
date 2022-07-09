@@ -28,6 +28,8 @@ on:
     outputs:
       dmg_artifact_name:
         value: ${{ jobs.build.outputs.dmg_artifact_name }}
+      zip_artifact_name:
+        value: ${{ jobs.build.outputs.zip_artifact_name }}
 
 permissions: {}
 
@@ -41,6 +43,7 @@ jobs:
         working-directory: Sources
     outputs:
       dmg_artifact_name: ${{ steps.package-dmg.outputs.DMG_FILENAME }}
+      zip_artifact_name: ${{ steps.package-zip.outputs.ZIP_FILENAME }}
     steps:
       - uses: actions/checkout@v3
       - name: Parse version
@@ -103,12 +106,32 @@ jobs:
             -volname "${{ steps.build-settings.outputs.PRODUCT_NAME }}" \
             "$DMG_PATH"
 
+      - name: Package ${{ steps.build-settings.outputs.PRODUCT_MODULE_NAME }}.zip
+        id: package-zip
+        run: |
+          ZIP_FILENAME="${{ steps.build-settings.outputs.PRODUCT_MODULE_NAME }}.zip"
+          echo "::set-output name=ZIP_FILENAME::$ZIP_FILENAME"
+
+          # Using /private/tmp over /tmp due to https://github.com/actions/upload-artifact/issues/92
+          ZIP_PATH="/private/tmp/$ZIP_FILENAME"
+          echo "::set-output name=ZIP_PATH::$ZIP_PATH"
+
+          cd "${{ steps.build-settings.outputs.INSTALL_DIR }}"
+          zip -r "$ZIP_PATH" "${{ steps.build-settings.outputs.FULL_PRODUCT_NAME }}"
+
       - name: Document release artifact SHAs
         run: |
           shasum --algorithm 512 "${{ steps.package-dmg.outputs.DMG_PATH }}"
+          shasum --algorithm 512 "${{ steps.package-zip.outputs.ZIP_PATH }}"
 
       - name: Upload ${{ steps.package-dmg.outputs.DMG_FILENAME }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ steps.package-dmg.outputs.DMG_FILENAME }}
           path: "${{ steps.package-dmg.outputs.DMG_PATH }}"
+
+      - name: Upload ${{ steps.package-zip.outputs.ZIP_FILENAME }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ steps.package-zip.outputs.ZIP_FILENAME }}
+          path: "${{ steps.package-zip.outputs.ZIP_PATH }}"
