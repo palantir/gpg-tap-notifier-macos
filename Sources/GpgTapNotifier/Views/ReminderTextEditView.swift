@@ -14,11 +14,15 @@ struct ReminderTextEditView: View {
     @AppStorage(AppUserDefaults.reminderTimeout.key, store: AppUserDefaults.suite)
     var reminderTimeout = AppUserDefaults.reminderTimeout.getDefault()
 
-    // TODO: Pull from a static list of quotes.
     static let sampleReminders = [
         (AppUserDefaults.reminderTitle.getDefault(), AppUserDefaults.reminderBody.getDefault()),
+        ("Tap Reminder", "Is your smart card blinking? You may need to tap it."),
         // From: https://www.hackingwithswift.com/example-code/system/how-to-set-local-alerts-using-unnotificationcenter
         ("Late wake up call", "The early bird catches the worm, but the second mouse gets the cheese."),
+        ("Tap Reminder", "Quick! Tap your smart card before it times out."),
+        ("Tap Reminder", "👈"),
+        ("Tap Reminder", "🏃‍♀️"),
+        ("Tap Reminder", "🏃")
     ]
 
     var body: some View {
