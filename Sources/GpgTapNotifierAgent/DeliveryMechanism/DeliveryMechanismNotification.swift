@@ -99,7 +99,6 @@ extension DeliveryMechanismNotification: DeliveryMechanism {
         content.categoryIdentifier = NotificationCategories.tapReminder.rawValue
 
         // Always play a sound by default. Users can disable this in System Preferences.
-        // TODO: Consider making what sound plays configurable.
         content.sound = .default
 
         let currentNotificationIdentifier = UUID().uuidString
