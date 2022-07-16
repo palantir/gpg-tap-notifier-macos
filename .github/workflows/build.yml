@@ -93,21 +93,24 @@ jobs:
             CURRENT_PROJECT_VERSION="${{ steps.parse-version.outputs.MARKETING_VERSION }}.${{ github.run_id }}" \
             install | xcpretty
 
-      - name: Package ${{ steps.build-settings.outputs.PRODUCT_MODULE_NAME }}.dmg
+      - uses: actions/setup-node@v1
+
+      - name: Package .dmg
         id: package-dmg
         run: |
-          DMG_FILENAME="${{ steps.build-settings.outputs.PRODUCT_MODULE_NAME }}.dmg"
+          npx create-dmg@5.3 \
+            "${{ steps.build-settings.outputs.INSTALL_DIR }}/${{ steps.build-settings.outputs.FULL_PRODUCT_NAME }}" \
+            || true # Will fail since code signing isn't setup.
+
+          DMG_FILENAME=$(echo *.dmg)
+          if [ ! -f "$DMG_FILENAME" ]; then
+            >&2 echo "No DMG file was created. See logs above."
+            exit 1
+          fi
+
           echo "::set-output name=DMG_FILENAME::$DMG_FILENAME"
-
-          # Using /private/tmp over /tmp due to https://github.com/actions/upload-artifact/issues/92
-          DMG_PATH="/private/tmp/$DMG_FILENAME"
+          DMG_PATH="$PWD/$DMG_FILENAME"
           echo "::set-output name=DMG_PATH::$DMG_PATH"
-
-          hdiutil create \
-            -fs HFS+ \
-            -srcfolder "${{ steps.build-settings.outputs.INSTALL_DIR }}/${{ steps.build-settings.outputs.FULL_PRODUCT_NAME }}" \
-            -volname "${{ steps.build-settings.outputs.PRODUCT_NAME }}" \
-            "$DMG_PATH"
 
       - name: Package ${{ steps.build-settings.outputs.PRODUCT_MODULE_NAME }}.zip
         id: package-zip
