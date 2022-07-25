@@ -57,3 +57,9 @@ It's likely the `GPG Tap Notifier.app` was moved after it was configured. This c
 ### Does this work for Web Browsers?
 
 It does not. YubiKeys support different _interfaces_ and WebAuthn is a different interface than the _OpenPGP_ interface. Fortunately this tool isn't necessary for WebAuthn since most web browsers will tell you it's waiting on input from a security key. (As opposed to `git` and `gpg`, which provide no indicators.)
+
+### Why not use git commit hooks?
+
+* The reminders fade away when you tap your smart card, which commit hooks do not do.
+* Commit hooks aren't reliable for rebase, cherry-picks, etc.
+* If you need to type out a commit message, the commit hook's notifications usually appear before the editor opens, but the smart card starts waiting for user action after you save your message.
