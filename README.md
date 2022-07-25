@@ -4,9 +4,26 @@ GPG Tap Notifier is a Swift rewrite of [`klali/scdaemon-proxy`](https://github.c
 
 ## What does it do?
 
-This app provides reminders to touch your security devices (e.g. YubiKeys) on macOS through a native notification.
+This app provides reminders to touch your security devices (e.g. YubiKeys) on macOS through a native notification. You can configure multiple styles of reminders.
 
-<img alt="macOS Notification Screenshot" src="./Documentation/tap-reminder-notification.png" width="370px" />
+<table>
+  <thead>
+    <tr>
+      <td>Alert HUD</td>
+      <td>Notification Center</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr valign="top">
+      <td><img alt="macOS Alert Screenshot" src="./Documentation/tap-reminder-alert.png" width="328px" /></td>
+      <td><img alt="macOS Notification Screenshot" src="./Documentation/tap-reminder-notification.png" width="370px" /></td>
+    </tr>
+  </tbody>
+</table>
+
+A configuration interface is available to help set up the application.
+
+<img alt="Screenshot of configurational interface" src="./Documentation/config-ui.png" width="637px" />
 
 ## How does it work?
 
