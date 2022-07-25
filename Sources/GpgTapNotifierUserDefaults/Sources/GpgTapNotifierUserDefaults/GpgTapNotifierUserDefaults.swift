@@ -41,11 +41,11 @@ public struct AppUserDefaults  {
 
     public static let reminderTitle = UserDefaultsConfig(
         key: "notificationTitle",
-        getDefault: { "YubiKey Reminder" })
+        getDefault: { "YubiKey Awaiting Tap" })
 
     public static let reminderBody = UserDefaultsConfig(
         key: "notificationBody",
-        getDefault: { "Is your YubiKey blinking? You may need to touch its metal contact." })
+        getDefault: { "A GPG signature has been requested. If you initiated this action, tap your YubiKey's metal contact to confirm." })
 
     public static let automaticallyRestartGpgAgent = UserDefaultsConfig(
         key: "automaticallyRestartGpgAgent",
