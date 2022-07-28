@@ -54,6 +54,17 @@ gpg: [stdin]: clear-sign failed: No SmartCard daemon
 
 It's likely the `GPG Tap Notifier.app` was moved after it was configured. This causes `~/.gnupg/gpg-agent.conf` to refer to a value of `scdaemon-program` that no longer exists on the file system. Opening `GPG Tap Notifier.app` and setting it back to _Enabled_ it should fix this problem.
 
+### I'm not seeing notifications
+
+The "Notification Center" alerting mechanism is subject a few macOS rules.
+
+- Is the `GPG Tap Notifier Agent` application allowed to send notifications in System Preferences? (Hint: We recommend setting this to "_Alert_" so the notification is present until the smartcard is tapped.)
+
+  ![Screenshot of GPG Tap Notifier in Notifications System Preferences](./Documentation/system-preferences-notification.png)
+
+- Is do not disturb enabled?
+- By default notifications are hidden when sharing your screen. See "*Allow notifications: When mirroring or sharing the display*" in the screenshot above.
+
 ### Does this work for Web Browsers?
 
 It does not. YubiKeys support different _interfaces_ and WebAuthn is a different interface than the _OpenPGP_ interface. Fortunately this tool isn't necessary for WebAuthn since most web browsers will tell you it's waiting on input from a security key. (As opposed to `git` and `gpg`, which provide no indicators.)
