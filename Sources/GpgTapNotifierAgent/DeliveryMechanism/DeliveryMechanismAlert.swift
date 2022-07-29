@@ -5,20 +5,9 @@ import AppKit
 import Foundation
 
 class DeliveryMechanismAlert {
-    private lazy var alertWindow: NSPanel = {
-        let panel = NSPanel(
-            contentRect: NSRect(x: 0, y: 0, width: 0, height: 0),
-            styleMask: [.borderless],
-            backing: .buffered,
-            defer: false)
-
-        panel.isFloatingPanel = true
-
-        return panel
-    }()
-
     struct PresentingState {
         let continuation: CheckedContinuation<PresentStopReason, Never>
+        let currentAlertWindow: NSPanel
         let currentAlert: NSAlert
     }
 
@@ -44,13 +33,19 @@ extension DeliveryMechanismAlert: DeliveryMechanism {
         alert.addButton(withTitle: "Close")
         alert.addButton(withTitle: "Open Configuration")
 
-        // During testing the invisible alert window somehow moved to the bottom
-        // left between reminders. Always center this window before we show the
-        // alert as a workaround.
+        let alertWindow = NSPanel(
+            contentRect: NSRect(x: 0, y: 0, width: 0, height: 0),
+            styleMask: [.borderless],
+            backing: .buffered,
+            defer: false)
+        alertWindow.isFloatingPanel = true
         alertWindow.center()
 
         return await withCheckedContinuation { (continuation: CheckedContinuation<PresentStopReason, Never>) in
-            self.presentingState = PresentingState(continuation: continuation, currentAlert: alert)
+            self.presentingState = PresentingState(
+                continuation: continuation,
+                currentAlertWindow: alertWindow,
+                currentAlert: alert)
 
             alert.beginSheetModal(for: alertWindow) { modalResponse in
                 // The beginSheetModal completionHandler callback here should
@@ -59,6 +54,7 @@ extension DeliveryMechanismAlert: DeliveryMechanism {
                 if let presentingState = self.presentingState {
                     self.presentingState = nil
                     presentingState.continuation.resume(returning: .userManuallyCleared)
+                    presentingState.currentAlertWindow.close()
                 }
 
                 // Corresponds with the "Open Configuration" button since it was
@@ -77,6 +73,7 @@ extension DeliveryMechanismAlert: DeliveryMechanism {
         self.presentingState = nil
 
         presentingState.continuation.resume(returning: .dismissed)
-        alertWindow.endSheet(presentingState.currentAlert.window)
+        presentingState.currentAlertWindow.endSheet(presentingState.currentAlert.window)
+        presentingState.currentAlertWindow.close()
     }
 }
