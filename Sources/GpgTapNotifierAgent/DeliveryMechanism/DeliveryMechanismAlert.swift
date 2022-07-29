@@ -34,7 +34,13 @@ extension DeliveryMechanismAlert: DeliveryMechanism {
         alert.addButton(withTitle: "Open Configuration")
 
         let alertWindow = NSPanel(
-            contentRect: NSRect(x: 0, y: 0, width: 0, height: 0),
+            // Without setting width/height to a non-zero value, the NSAlert
+            // appears to always display on the primary screen instead of
+            // NSScreen.main (the screen with the active window). This can be
+            // jarring and causes the NSAlert animation to fly from one screen
+            // to the other. The 1 x 1 px window ends up not being visible to
+            // users since it's under the NSAlert.
+            contentRect: NSRect(x: 0, y: 0, width: 1, height: 1),
             styleMask: [.borderless],
             backing: .buffered,
             defer: false)
