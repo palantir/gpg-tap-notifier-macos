@@ -54,6 +54,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         } catch {
             self.logger.error("Failed to start scdaemon at \(scdaemonPath.path): \(error.localizedDescription)")
             try? FileHandle.standardError.write(contentsOf: Data("Failed to start scdaemon at \(scdaemonPath.path): \(error.localizedDescription)\n".utf8))
+            openScdaemonExecFailAlert(scdaemonPath: scdaemonPath, error: error)
             exit(1)
         }
     }

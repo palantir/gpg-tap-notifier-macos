@@ -14,6 +14,7 @@
 		4647679C284F009E00A7E6C9 /* DeliveryMechanismAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4647679B284F009E00A7E6C9 /* DeliveryMechanismAlert.swift */; };
 		464CDAF72870EFE300EAF1AD /* DeliveryMechanismTestButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464CDAF62870EFE300EAF1AD /* DeliveryMechanismTestButtonView.swift */; };
 		464CDAF92870F3E800EAF1AD /* ProgressViewLoadingGpgConf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464CDAF82870F3E800EAF1AD /* ProgressViewLoadingGpgConf.swift */; };
+		466DC527291869A10046B9DD /* OpenScdaemonExecFailAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466DC526291869A10046B9DD /* OpenScdaemonExecFailAlert.swift */; };
 		4693B649285535C500FCD249 /* DeliveryMechanismChooserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4693B648285535C500FCD249 /* DeliveryMechanismChooserView.swift */; };
 		46979AED28552F3E0026C4FD /* AutoReloadingDeliveryMechanism.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46979AEC28552F3E0026C4FD /* AutoReloadingDeliveryMechanism.swift */; };
 		46A442572856FA980012CE9A /* DeliveryMechanismChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A442562856FA980012CE9A /* DeliveryMechanismChoiceView.swift */; };
@@ -79,6 +80,7 @@
 		4647679B284F009E00A7E6C9 /* DeliveryMechanismAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryMechanismAlert.swift; sourceTree = "<group>"; };
 		464CDAF62870EFE300EAF1AD /* DeliveryMechanismTestButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryMechanismTestButtonView.swift; sourceTree = "<group>"; };
 		464CDAF82870F3E800EAF1AD /* ProgressViewLoadingGpgConf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewLoadingGpgConf.swift; sourceTree = "<group>"; };
+		466DC526291869A10046B9DD /* OpenScdaemonExecFailAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenScdaemonExecFailAlert.swift; sourceTree = "<group>"; };
 		4693B648285535C500FCD249 /* DeliveryMechanismChooserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryMechanismChooserView.swift; sourceTree = "<group>"; };
 		46979AEC28552F3E0026C4FD /* AutoReloadingDeliveryMechanism.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoReloadingDeliveryMechanism.swift; sourceTree = "<group>"; };
 		46A442562856FA980012CE9A /* DeliveryMechanismChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryMechanismChoiceView.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				837F1E1A27CADF1F00C249DA /* main.swift */,
 				8345C08C27EA37A3000413FF /* ReadCompletionUtils.swift */,
 				46377DF8285596440075A92E /* OpenConfigurationApp.swift */,
+				466DC526291869A10046B9DD /* OpenScdaemonExecFailAlert.swift */,
 				837F1E1027CADB3500C249DA /* Assets.xcassets */,
 				837F1E1527CADB3500C249DA /* GpgTapNotifierAgent.entitlements */,
 				837F1E1227CADB3500C249DA /* Preview Content */,
@@ -467,6 +470,7 @@
 			files = (
 				46377DF9285596440075A92E /* OpenConfigurationApp.swift in Sources */,
 				4647679C284F009E00A7E6C9 /* DeliveryMechanismAlert.swift in Sources */,
+				466DC527291869A10046B9DD /* OpenScdaemonExecFailAlert.swift in Sources */,
 				837F1E1B27CADF1F00C249DA /* main.swift in Sources */,
 				837F1E0D27CADB3300C249DA /* GpgTapNotifierAgentApp.swift in Sources */,
 				46979AED28552F3E0026C4FD /* AutoReloadingDeliveryMechanism.swift in Sources */,
