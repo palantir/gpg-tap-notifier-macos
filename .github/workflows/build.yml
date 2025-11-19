@@ -58,7 +58,7 @@ jobs:
           if [[ ! "${{ inputs.version }}" =~ $VERSION_REGEX ]]; then
               exit 1
           fi
-          echo "::set-output name=MARKETING_VERSION::${BASH_REMATCH[1]}"
+          echo "MARKETING_VERSION=${BASH_REMATCH[1]}" >> $GITHUB_OUTPUT
       - name: Select Xcode
         run: |
           sudo xcode-select -switch "/Applications/Xcode_${{ inputs.xcode_version }}.app"
@@ -75,7 +75,7 @@ jobs:
 
           function set-output-from-proj {
             value=$(echo $XCODE_BUILD_SETTINGS | jq --raw-output ".[0].buildSettings.$1")
-            echo "::set-output name=$1::$value"
+            echo "$1=$value" >> $GITHUB_OUTPUT
           }
 
           # https://developer.apple.com/library/archive/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html
@@ -108,19 +108,19 @@ jobs:
             exit 1
           fi
 
-          echo "::set-output name=DMG_FILENAME::$DMG_FILENAME"
+          echo "DMG_FILENAME=$DMG_FILENAME" >> $GITHUB_OUTPUT
           DMG_PATH="$PWD/$DMG_FILENAME"
-          echo "::set-output name=DMG_PATH::$DMG_PATH"
+          echo "DMG_PATH=$DMG_PATH" >> $GITHUB_OUTPUT
 
       - name: Package ${{ steps.build-settings.outputs.PRODUCT_MODULE_NAME }}.zip
         id: package-zip
         run: |
           ZIP_FILENAME="${{ steps.build-settings.outputs.PRODUCT_MODULE_NAME }}.zip"
-          echo "::set-output name=ZIP_FILENAME::$ZIP_FILENAME"
+          echo "ZIP_FILENAME=$ZIP_FILENAME" >> $GITHUB_OUTPUT
 
           # Using /private/tmp over /tmp due to https://github.com/actions/upload-artifact/issues/92
           ZIP_PATH="/private/tmp/$ZIP_FILENAME"
-          echo "::set-output name=ZIP_PATH::$ZIP_PATH"
+          echo "ZIP_PATH=$ZIP_PATH" >> $GITHUB_OUTPUT
 
           cd "${{ steps.build-settings.outputs.INSTALL_DIR }}"
           zip -r "$ZIP_PATH" "${{ steps.build-settings.outputs.FULL_PRODUCT_NAME }}"
@@ -129,11 +129,11 @@ jobs:
         id: package-pkg
         run: |
           PKG_FILENAME="${{ steps.build-settings.outputs.PRODUCT_MODULE_NAME }}.pkg"
-          echo "::set-output name=PKG_FILENAME::$PKG_FILENAME"
+          echo "PKG_FILENAME=$PKG_FILENAME" >> $GITHUB_OUTPUT
 
           # Using /private/tmp over /tmp due to https://github.com/actions/upload-artifact/issues/92
-          PKG_PATH="/private/tmp/$PKG_FILENAME"
-          echo "::set-output name=PKG_PATH::$PKG_PATH"
+          PKG_PATH="/private/tmp/$PKG_FILENAME" >> $GITHUB_OUTPUT
+          echo "PKG_PATH=$PKG_PATH" >> $GITHUB_OUTPUT
 
           pkgbuild \
             --root "${{ steps.build-settings.outputs.INSTALL_DIR }}" \
