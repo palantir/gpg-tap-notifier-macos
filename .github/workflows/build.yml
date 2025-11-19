@@ -98,7 +98,7 @@ jobs:
       - name: Package .dmg
         id: package-dmg
         run: |
-          npx create-dmg@5.3 \
+          npx create-dmg@7.1 \
             "${{ steps.build-settings.outputs.INSTALL_DIR }}/${{ steps.build-settings.outputs.FULL_PRODUCT_NAME }}" \
             || true # Will fail since code signing isn't setup.
 
