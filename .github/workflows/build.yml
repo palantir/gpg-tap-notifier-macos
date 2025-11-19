@@ -147,19 +147,19 @@ jobs:
           shasum --algorithm 512 "${{ steps.package-pkg.outputs.PKG_PATH }}"
 
       - name: Upload ${{ steps.package-dmg.outputs.DMG_FILENAME }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v5
         with:
           name: ${{ steps.package-dmg.outputs.DMG_FILENAME }}
           path: "${{ steps.package-dmg.outputs.DMG_PATH }}"
 
       - name: Upload ${{ steps.package-zip.outputs.ZIP_FILENAME }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v5
         with:
           name: ${{ steps.package-zip.outputs.ZIP_FILENAME }}
           path: "${{ steps.package-zip.outputs.ZIP_PATH }}"
 
       - name: Upload ${{ steps.package-pkg.outputs.PKG_FILENAME }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v5
         with:
           name: ${{ steps.package-pkg.outputs.PKG_FILENAME }}
           path: "${{ steps.package-pkg.outputs.PKG_PATH }}"
