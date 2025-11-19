@@ -93,7 +93,7 @@ jobs:
             CURRENT_PROJECT_VERSION="${{ steps.parse-version.outputs.MARKETING_VERSION }}.${{ github.run_id }}" \
             install | xcpretty
 
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v6
 
       - name: Package .dmg
         id: package-dmg
