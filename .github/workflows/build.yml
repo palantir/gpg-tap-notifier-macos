@@ -39,7 +39,7 @@ jobs:
 
   build:
     name: Build macOS
-    runs-on: macos-12
+    runs-on: macos-26
     defaults:
       run:
         working-directory: Sources
