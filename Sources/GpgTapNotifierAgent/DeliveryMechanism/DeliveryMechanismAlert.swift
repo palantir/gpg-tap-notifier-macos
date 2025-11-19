@@ -28,6 +28,11 @@ extension DeliveryMechanismAlert: DeliveryMechanism {
         alert.informativeText = body
         alert.alertStyle = .informational
 
+        // As of macOS Tahoe, the app icon can be hidden if "the alert’s
+        // context is clear". Override this default and always show the app's
+        // icon.
+        alert.icon = NSImage(named: "AppIcon")
+
         // NOTE: According to AppKit docs, the order buttons are added affect
         // what code they're assigned in the modalResponse.
         alert.addButton(withTitle: "Close")
