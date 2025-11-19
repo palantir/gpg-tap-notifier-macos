@@ -24,17 +24,17 @@ jobs:
     steps:
       - name: Download .dmg
         id: download_dmg_artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v6
         with:
           name: ${{ needs.build.outputs.dmg_artifact_name }}
       - name: Download .zip
         id: download_zip_artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v6
         with:
           name: ${{ needs.build.outputs.zip_artifact_name }}
       - name: Download .pkg
         id: download_pkg_artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v6
         with:
           name: ${{ needs.build.outputs.pkg_artifact_name }}
       - name: Upload release artifact
