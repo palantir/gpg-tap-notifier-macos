@@ -420,6 +420,10 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/GpgTapNotifier/GpgTapNotifier.help/Contents/Resources/en.lproj/copyrights.html",
+				"$(SRCROOT)/GpgTapNotifier/GpgTapNotifier.help/Contents/Resources/en.lproj/css/main.css",
+				"$(SRCROOT)/GpgTapNotifier/GpgTapNotifier.help/Contents/Resources/en.lproj/GpgTapNotifier.cshelpindex",
+				"$(SRCROOT)/GpgTapNotifier/GpgTapNotifier.help/Contents/Resources/en.lproj/GpgTapNotifier.html",
 			);
 			outputFileListPaths = (
 			);
