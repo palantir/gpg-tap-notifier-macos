@@ -122,8 +122,7 @@ public struct GpgAgentConfModel {
 
     static public func load(_ configurationFilePath: URL) async throws -> GpgAgentConfModel {
         let handle = try FileHandle(forUpdating: configurationFilePath)
-        let bytes = Data(referencing: try await readFile(handle))
-        let contents = String(decoding: bytes, as: UTF8.self)
+        let contents = try await handle.bytes.characters.reduce("") { $0 + String($1) }
 
         return GpgAgentConfModel(configurationFilePath: configurationFilePath, contents: contents)
     }
