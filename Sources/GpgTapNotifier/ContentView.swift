@@ -70,7 +70,7 @@ struct ContentView: View {
                     Spacer()
                 }
                 .tabItem { Text("Message Text") }
-            }
+            }.groupedTabViewStyle()
         }.padding(35)
     }
 }
@@ -78,5 +78,17 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+extension TabView {
+    // macOS 15 added a new SidebarAdaptableTabViewStyle that seems to be the
+    // default. Switch back to the previous grouped styling.
+    func groupedTabViewStyle() -> some View {
+        if #available(macOS 15.0, *) {
+            return self.tabViewStyle(.grouped)
+        } else {
+            return self
+        }
     }
 }
