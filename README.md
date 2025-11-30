@@ -1,3 +1,7 @@
+<p align="right">
+<a href="https://autorelease.general.dmz.palantir.tech/palantir/gpg-tap-notifier-macos"><img src="https://img.shields.io/badge/Perform%20an-Autorelease-success.svg" alt="Autorelease"></a>
+</p>
+
 # GPG Tap Notifier (for macOS)
 
 GPG Tap Notifier is a Swift rewrite of [`klali/scdaemon-proxy`](https://github.com/klali/scdaemon-proxy) for macOS.
