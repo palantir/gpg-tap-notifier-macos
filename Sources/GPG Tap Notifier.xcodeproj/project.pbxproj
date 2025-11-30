@@ -428,6 +428,8 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/GpgTapNotifier/GpgTapNotifier.help/Contents/Resources/en.lproj/GpgTapNotifier.helpindex",
+				"$(DERIVED_FILE_DIR)/GpgTapNotifier/GpgTapNotifier.help/Contents/Resources/en.lproj/GpgTapNotifier.cshelpindex",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
