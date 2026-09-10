@@ -85,6 +85,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         var presentReminderTask: Task<(), Error>? = nil
+        var pendingScdaemonCommand = Data()
+        var pendingScdaemonResponse = Data()
+        var pendingCommandRequiresReminder = [Bool]()
 
         // On macOS 12, FileHandle provides an async sequence for reading input
         // data. Unfortunately we have to support macOS 11. The logic below can
@@ -95,8 +98,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             // sends multiple messages in a row. During testing, this seems to
             // result in less false positives while not creating any true
             // negatives.
-            presentReminderTask?.cancel()
-
             let data = try! readCompletionResult(notification.userInfo!).get()
 
             // In testing, data.isEmpty corresponded to EOF. (But it'd be good to verify that.)
@@ -112,31 +113,51 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
             FileHandle.standardInput.readInBackgroundAndNotify()
 
-            presentReminderTask = Task {
-                do {
-                    try await Task.sleep(nanoseconds: UInt64(reminderTimeoutSecs * 1_000_000_000))
-                } catch is CancellationError {
-                    return
+            pendingScdaemonCommand.append(data as Data)
+            while let newlineIndex = pendingScdaemonCommand.firstIndex(of: 0x0A) {
+                let command = pendingScdaemonCommand.prefix(upTo: newlineIndex)
+                pendingScdaemonCommand.removeSubrange(...newlineIndex)
+                let requiresReminder = command.starts(with: Data("PKSIGN".utf8))
+                pendingCommandRequiresReminder.append(requiresReminder)
+
+                guard requiresReminder else {
+                    continue
                 }
 
-                await self.presentReminder()
+                presentReminderTask?.cancel()
+                presentReminderTask = Task {
+                    do {
+                        try await Task.sleep(nanoseconds: UInt64(reminderTimeoutSecs * 1_000_000_000))
+                    } catch is CancellationError {
+                        return
+                    }
+
+                    await self.presentReminder()
+                }
             }
         }
 
         NotificationCenter.default.addObserver(forName: FileHandle.readCompletionNotification, object: scdaemonStdOut.fileHandleForReading, queue: .main) { notification in
-            presentReminderTask?.cancel()
-            Task { await self.dismissReminder() }
-
             let data = try! readCompletionResult(notification.userInfo!).get()
             try! FileHandle.standardOutput.write(contentsOf: data)
+
+            pendingScdaemonResponse.append(data as Data)
+            while let newlineIndex = pendingScdaemonResponse.firstIndex(of: 0x0A) {
+                let response = pendingScdaemonResponse.prefix(upTo: newlineIndex)
+                pendingScdaemonResponse.removeSubrange(...newlineIndex)
+                guard self.isTerminalAssuanResponse(response), !pendingCommandRequiresReminder.isEmpty else {
+                    continue
+                }
+                if pendingCommandRequiresReminder.removeFirst() {
+                    presentReminderTask?.cancel()
+                    Task { await self.dismissReminder() }
+                }
+            }
 
             scdaemonStdOut.fileHandleForReading.readInBackgroundAndNotify()
         }
 
         NotificationCenter.default.addObserver(forName: FileHandle.readCompletionNotification, object: scdaemonStdErr.fileHandleForReading, queue: .main) { notification in
-            presentReminderTask?.cancel()
-            Task { await self.dismissReminder() }
-
             let data = try! readCompletionResult(notification.userInfo!).get()
             try! FileHandle.standardError.write(contentsOf: data)
 
@@ -148,6 +169,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         scdaemonStdErr.fileHandleForReading.readInBackgroundAndNotify()
 
         return scdaemon
+    }
+
+    private func isTerminalAssuanResponse(_ response: Data) -> Bool {
+        response == Data("OK".utf8)
+            || response.starts(with: Data("OK ".utf8))
+            || response.starts(with: Data("ERR ".utf8))
     }
 
     @MainActor
